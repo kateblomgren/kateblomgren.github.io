@@ -1,4 +1,69 @@
 ---
 ---
 
-@import "main";
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sue+Ellen+Francisco&display=swap');
+
+
+/* Body text: regular Caveat */
+body {
+ font-family: "Sue Ellen Francisco", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3rem;
+  color: #1d1d20;
+  padding: 2rem;
+  position: relative;
+  z-index: 0;
+  background-color: lightgrey;
+}
+
+.inter-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+/* Scrolling background */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/21245912.png');
+  background-size: 300px auto; /* keeps original image proportions */
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Headers: Caveat Brush */
+h1, h2, h3, h4 {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Links */
+a {
+  color: #111178;
+  text-decoration: none;
+}
+
+.publication-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0;
+}
+
+.publication-list li {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}

@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sue+Ellen+Francisco&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Barriecito&family=Finger+Paint&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Knewave&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&display=swap');
 /* 
 #f5cede
 #bec2f2
@@ -14,11 +14,13 @@
 
 /* Body text: regular Caveat */
 body {
-  font-family: "Annie Use Your Telescope", cursive;
-  font-weight: 400;
+  font-family: "Edu Tas Beginner", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
-  font-size: 1.3rem;
-  color: #1d1d20;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: #292531;
   padding: 2rem;
   position: relative;
   z-index: 0;
@@ -31,6 +33,12 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 1.1rem;
+}
+
+.menu{
+  font-family: "Barriecito", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Scrolling background */
@@ -58,7 +66,7 @@ h1, h2, h3, h4 {
 
 /* Links */
 a {
-  color: #111178;
+  color: #151731;
   text-decoration: none;
 }
 
@@ -69,10 +77,16 @@ a {
   margin-bottom: 2rem;
   line-height: 1.5;
 }
+
+.publication-list li {
+  margin-bottom: 1.5rem; /* Adds spacing between list items */
+  line-height: 1.5;
+}
+
 .publications-wrapper {
   background-image: url('{{ site.baseurl }}/assets/img/paper_bg_papers.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   padding: 2rem;
   border-radius: 8px;

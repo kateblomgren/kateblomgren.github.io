@@ -3,6 +3,6 @@ layout: home
 title: "Home"
 ---
 
-This theme allows an academic person to showcase their research interests, publications, research group, curriculum vitae, any courses that they may be teaching, or anything else they may want to put out into the world.
+I’m a PhD student at [**Linköping University**](https://liu.se/en/research/visualization-and-interaction-design), where I’m supervised by [**Miriah Meyer**](https://miriah.github.io/). My research sits at the intersection of data visualization, game design, and feminist theory. Originally from Kyiv, Ukraine, and now based in Norrköping, Sweden, I bring my background in graphic design into my academic work, exploring how systems—visual, procedural, and social—can carry messages of inclusivity, equity, and care. I’m particularly interested in how play and interactivity can be used as critical tools to question norms, challenge hierarchies, and reimagine how we give credit and recognize contributions—especially in spaces like science museums.
 
-Academics can use this home page to describe their research interests, display their latest publications, or provide an introduction to their research group.
+When I’m not working, I love cozy games, quiet moments with my cats, and spending time with my wife and family.

@@ -22,9 +22,10 @@ const sectionColors = [
     { match: '/collections/', color: '#AEE8FF' },
 ]
 
+const normalizedPath = pathname.replace(/\/$/, '') || '/'
 const currentSectionColor =
     sectionColors.find((section) =>
-        section.match === '/' ? pathname === '/' : pathname.startsWith(section.match)
+        section.match === '/' ? normalizedPath === '/' : normalizedPath.startsWith(section.match.replace(/\/$/, ''))
     )?.color ?? '#FEFFF0'
 ---
 
@@ -56,7 +57,7 @@ const currentSectionColor =
                 {links.map(item => ( 
                     <li class="border-l-2 border-black p-3 py-4">
                         <a style={`--item-accent: ${item.color}`} href={item.path} target={item.target} class="whitespace-nowrap relative flex items-center before:absolute before:left-0 before:bottom-1 before:h-[8px] before:w-0 before:bg-[var(--item-accent)] before:transition-all before:duration-300 hover:before:w-full">
-                            <span class="relative z-5">{item.name} {pathname == item.path ? '//' : ''}</span>
+                            <span class="relative z-5">{item.name} {normalizedPath === item.path.replace(/\/$/, '') ? '//' : ''}</span>
                         </a>
                     </li>
                 ))}
@@ -78,7 +79,7 @@ const currentSectionColor =
         {links.map(item => ( 
             <li class="py-3">
                 <a style={`--item-accent: ${item.color}`} href={item.path} target={item.target} class="p-3 whitespace-nowrap text-2xl font-bold transition-colors duration-200 hover:text-[var(--item-accent)]">
-                    {item.name} {pathname == item.path ? '//' : ''}
+                    {item.name} {normalizedPath === item.path.replace(/\/$/, '') ? '//' : ''}
                 </a>
             </li>
         ))}

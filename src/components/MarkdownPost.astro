@@ -1,0 +1,62 @@
+---
+import '../styles/global.css'
+import Layout from '../layouts/Layout.astro';
+import AppHeader from './Header.astro';
+import AppFooter from './Footer.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+  <AppHeader />
+
+  <article class="pt-10 pb-32 px-4">
+    <div class="max-w-2xl mx-auto">
+
+      <!-- Back -->
+      <a href="/news/" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-black transition-colors mb-8">
+        ← Back to News
+      </a>
+
+      <!-- Date stamp -->
+      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">{frontmatter.pubDate}</p>
+
+      <!-- Title -->
+      <h1 class="text-4xl font-black leading-tight mb-8">{frontmatter.title}</h1>
+
+      <!-- Hero image -->
+      {frontmatter.image?.url && (
+        <div class="w-full border-2 border-black mb-10 overflow-hidden">
+          <img
+            src={frontmatter.image.url}
+            alt={frontmatter.image.alt || ''}
+            class="w-full object-cover max-h-[420px]"
+          />
+          {frontmatter.image.alt && (
+            <p class="text-xs text-gray-500 px-3 py-2 border-t border-gray-100 italic">{frontmatter.image.alt}</p>
+          )}
+        </div>
+      )}
+
+      <!-- Body -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-black
+        prose-a:underline prose-a:decoration-[#FFDA34] prose-a:decoration-2
+        prose-strong:font-black">
+        <slot />
+      </div>
+
+      <!-- Tags -->
+      {frontmatter.tags?.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-12 pt-8 border-t-2 border-black">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="text-xs px-3 py-1 bg-[#FFDA34] border border-black font-medium">{tag}</span>
+          ))}
+        </div>
+      )}
+
+    </div>
+  </article>
+
+  <AppFooter />
+</Layout>

@@ -1,0 +1,45 @@
+---
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Kate Blomgren</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+
+:root{
+	--main-bg: #fefff1;
+	--grid-color: #ece7ef;
+	--grid-size: 20px;
+	--blue: #BAE6FF;
+	--yellow: #FFDC58;
+}
+
+html,
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--main-bg);
+	background-image:
+		linear-gradient(to right, var(--grid-color) 2px, transparent 2px),
+		linear-gradient(to bottom, var(--grid-color) 2px, transparent 2px);
+	background-size: var(--grid-size) var(--grid-size);
+	background-position: top left;
+	font-family: "Space Grotesk", sans-serif;
+	scroll-behavior: smooth;
+}
+
+
+</style>

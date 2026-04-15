@@ -1,0 +1,187 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro"
+
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Tools from '../components/Tools.astro'
+import Footer from '../components/Footer.astro'
+import Publications from '../components/Publications.astro'
+import Works from '../components/Works.astro'
+import TwoTruths from '../components/TwoTruths.astro'
+
+---
+
+
+<Layout>
+  <Header />
+
+  <!-- Sticker book overlay — sits above all content, scrolls with page -->
+  <div id="sticker-book" class="absolute top-0 left-0 w-full h-full pointer-events-none" style="min-height: 100vh; overflow: visible; z-index: 40;"></div>
+
+  <Hero />
+  <Tools />
+  <Publications />
+  <Works />
+  <TwoTruths />
+  <Footer />
+</Layout>
+
+<script is:inline>
+  window.addSticker = function (image) {
+    const container = document.getElementById('sticker-book');
+    if (!container) return;
+
+    if (document.querySelector(`[data-sticker="${image}"]`)) return;
+
+    const sticker = document.createElement('img');
+    sticker.src = image;
+    sticker.setAttribute('data-sticker', image);
+    sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
+    sticker.style.width = '160px';
+    sticker.style.willChange = 'transform';
+
+    const containerRect = container.getBoundingClientRect();
+    // Spawn in the left free margin area
+    const startX = Math.floor(Math.random() * 80 + 15);
+    const startY = Math.floor(Math.random() * 180 + 160) - containerRect.top;
+
+    sticker.style.transform = `translate(${startX}px, ${startY}px) scale(0)`;
+    sticker.style.transition = 'transform 0.2s ease';
+
+    requestAnimationFrame(() => {
+      sticker.style.transform = `translate(${startX}px, ${startY}px) scale(1)`;
+    });
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let currentX = startX;
+    let currentY = startY;
+    let rafId = null;
+
+    sticker.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = sticker.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      sticker.style.cursor = 'grabbing';
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const cRect = container.getBoundingClientRect();
+      currentX = e.clientX - cRect.left - offsetX;
+      currentY = e.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      sticker.style.cursor = 'grab';
+      sticker.style.transition = 'transform 0.2s ease';
+    });
+
+    // Touch support
+    sticker.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      const rect = sticker.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!sticker.matches(':active') && !isDragging) return;
+      const touch = e.touches[0];
+      const cRect = container.getBoundingClientRect();
+      currentX = touch.clientX - cRect.left - offsetX;
+      currentY = touch.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    }, { passive: false });
+
+    container.appendChild(sticker);
+  };
+
+  // Pre-spawn Untitled_Artwork-11 visible from page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('sticker-book');
+    if (!container) return;
+
+    const sticker = document.createElement('img');
+    sticker.src = '/Untitled_Artwork-11.png';
+    sticker.setAttribute('data-sticker', '/Untitled_Artwork-11.png');
+    sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
+    sticker.style.width = '160px';
+    sticker.style.willChange = 'transform';
+
+    const containerRect = container.getBoundingClientRect();
+    let currentX = 20;
+    let currentY = 170 - containerRect.top;
+
+    sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(0)`;
+    sticker.style.transition = 'transform 0.2s ease';
+    requestAnimationFrame(() => {
+      sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+    });
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let rafId = null;
+
+    sticker.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = sticker.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      sticker.style.cursor = 'grabbing';
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const cRect = container.getBoundingClientRect();
+      currentX = e.clientX - cRect.left - offsetX;
+      currentY = e.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    });
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      sticker.style.cursor = 'grab';
+      sticker.style.transition = 'transform 0.2s ease';
+    });
+    sticker.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      const rect = sticker.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const cRect = container.getBoundingClientRect();
+      currentX = touch.clientX - cRect.left - offsetX;
+      currentY = touch.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    }, { passive: false });
+
+    container.appendChild(sticker);
+  });
+</script>

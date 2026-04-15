@@ -1,0 +1,111 @@
+---
+const cards = [
+  {
+    rotation: '-1.5deg',
+    front: 'A surprisingly large portion of my life has been spent surrounded by sea.',
+    hover: 'this was not part of the plan',
+    verdict: 'TRUE',
+    back: 'I have lived both in the UK and on Gotland, which unintentionally adds up to a significant part of my life spent on islands.',
+    isTrue: true,
+  },
+  {
+    rotation: '2deg',
+    front: 'Medical professionals would likely question some of my household decisions.',
+    hover: 'I stand by them',
+    verdict: 'TRUE',
+    back: 'I am allergic to cats, but I live with them anyway.',
+    isTrue: true,
+  },
+  {
+    rotation: '-0.8deg',
+    front: 'My research has reached dome-theatre proportions.',
+    hover: 'some ideas deserve a larger stage',
+    verdict: 'FALSE',
+    back: 'I have not presented my research in a planetarium — though it does sound like something I would gladly do.',
+    isTrue: false,
+  },
+]
+---
+
+<section class="py-16 px-4">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold mb-3">Things I may or may not have done</h2>
+      <p class="text-gray-600 leading-relaxed">
+        Three statements about me.<br />
+        Two are true, one is not.<br />
+        You can decide which is which.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+      {cards.map((card, i) => (
+        <div
+          class="card-wrap"
+          style={`transform: rotate(${card.rotation}); transition: transform 0.2s ease;`}
+          onmouseenter="this.style.transform='rotate(0deg)'"
+          onmouseleave={`this.style.transform='rotate(${card.rotation})'`}
+        >
+          <!-- flip container -->
+          <div
+            class="card-inner"
+            onclick="this.classList.toggle('flipped')"
+            style="height: 240px; cursor: pointer;"
+          >
+            <!-- FRONT -->
+            <div class={`card-face card-front bg-white border-2 border-black p-5 shadow-[3px_3px_0px_rgba(0,0,0,0.15)]`}>
+              <!-- tape strip at top -->
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-5 bg-[#FFDC58] border border-yellow-400 opacity-80"></div>
+
+              <!-- hover note -->
+              <p class="hover-note absolute bottom-4 right-4 text-[10px] text-gray-400 italic leading-tight text-right max-w-[80px]">
+                ({card.hover})
+              </p>
+
+              <p class="mt-4 text-sm leading-relaxed">{card.front}</p>
+            </div>
+
+            <!-- BACK -->
+            <div class={`card-face card-back border-2 border-black p-5 shadow-[3px_3px_0px_rgba(0,0,0,0.15)] ${card.isTrue ? 'bg-[#AEF5D4]' : 'bg-[#FEA7CC]'}`}>
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-5 bg-[#FFDC58] border border-yellow-400 opacity-80"></div>
+              <p class="font-black text-2xl mb-3 tracking-tight">{card.verdict}</p>
+              <p class="text-sm leading-relaxed">{card.back}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-xs text-gray-400 text-center mt-10">Click a card to reveal</p>
+
+  </div>
+</section>
+
+<style>
+  .card-inner {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 2px;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+  }
+  .hover-note {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .card-inner:hover .hover-note {
+    opacity: 1;
+  }
+</style>

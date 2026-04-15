@@ -1,0 +1,221 @@
+---
+---
+
+<section class="py-16 px-4 border-t-2 border-black">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="text-center mb-6">
+      <h2 class="text-3xl font-bold">Disturb the System</h2>
+      <p class="text-gray-500 text-sm mt-1">Click or press <kbd class="border border-gray-300 px-1 rounded text-xs">Space</kbd> to jump · double jump allowed</p>
+    </div>
+
+    <div class="relative border-2 border-black bg-white overflow-hidden">
+      <canvas id="game-canvas" width="700" height="180" class="w-full block"></canvas>
+
+      <!-- Overlay: start / game-over -->
+      <div id="game-overlay" class="absolute inset-0 flex items-center justify-center bg-[#fefff1]/90 backdrop-blur-[1px]">
+        <div id="overlay-inner" class="text-center">
+          <button id="game-start" class="px-6 py-2 border-2 border-black font-bold bg-[#FFDC58] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow text-sm">
+            Start →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-400 text-center mt-2">Every system disturbed counts as a disruption</p>
+
+  </div>
+</section>
+
+<script is:inline>
+(function () {
+  const canvas  = document.getElementById('game-canvas');
+  const ctx     = canvas.getContext('2d');
+  const overlay = document.getElementById('game-overlay');
+  const inner   = document.getElementById('overlay-inner');
+  const startBtn = document.getElementById('game-start');
+
+  // ---------- constants ----------
+  const W = 700, H = 180;
+  const GROUND    = 148;   // y of the ground line
+  const GRAVITY   = 0.65;
+  const JUMP_V    = -13.5;
+  const P_W = 34, P_H = 44;
+
+  const LABELS = [
+    'SYSTEM', 'STATUS QUO', 'THE NORM',
+    'HIERARCHY', 'ACADEMIA', 'PATRIARCHY',
+    'THE CANON', 'CONSENSUS', 'DEFAULT'
+  ];
+
+  // ---------- assets ----------
+  const playerImg = new Image();
+  playerImg.src = '/Untitled_Artwork-11.png';
+
+  // ---------- state ----------
+  let state    = 'idle';   // idle | running | dead
+  let frame    = 0;
+  let score    = 0;
+  let speed    = 4;
+  let player   = {};
+  let obstacles = [];
+  let animId;
+
+  function initPlayer() {
+    player = { x: 70, y: GROUND, vy: 0, jumps: 0 };
+  }
+
+  function init() {
+    initPlayer();
+    obstacles = [];
+    frame = 0; score = 0; speed = 4;
+  }
+
+  // ---------- jump ----------
+  function jump() {
+    if (state !== 'running') return;
+    if (player.jumps < 2) {
+      player.vy = JUMP_V;
+      player.jumps++;
+    }
+  }
+
+  // ---------- spawn ----------
+  function spawnObstacle() {
+    const label = LABELS[Math.floor(Math.random() * LABELS.length)];
+    const w     = Math.max(64, label.length * 7.5);
+    const h     = 28 + Math.random() * 24;
+    obstacles.push({ x: W + 20, y: GROUND - h, w, h, label });
+  }
+
+  // ---------- update ----------
+  function update() {
+    frame++;
+    score = Math.floor(frame / 8);
+    speed = 4 + frame / 600;
+
+    // player physics
+    player.vy += GRAVITY;
+    player.y  += player.vy;
+    if (player.y >= GROUND) { player.y = GROUND; player.vy = 0; player.jumps = 0; }
+
+    // spawn
+    const interval = Math.max(55, 85 - Math.floor(frame / 200) * 5);
+    if (frame % interval === 0) spawnObstacle();
+
+    // move
+    obstacles.forEach(o => o.x -= speed);
+    obstacles = obstacles.filter(o => o.x + o.w > 0);
+
+    // collision (forgiving hitbox)
+    const m  = 7;
+    const px = player.x + m, py = player.y - P_H + m;
+    const pw = P_W - m * 2, ph = P_H - m * 2;
+
+    for (const o of obstacles) {
+      if (px < o.x + o.w && px + pw > o.x && py < o.y + o.h && py + ph > o.y) {
+        state = 'dead';
+        showGameOver();
+        return;
+      }
+    }
+  }
+
+  // ---------- draw ----------
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // grid background
+    ctx.strokeStyle = '#ece7ef';
+    ctx.lineWidth   = 1;
+    for (let x = 0; x < W; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y < H; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+    // ground
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth   = 2;
+    ctx.beginPath(); ctx.moveTo(0, GROUND + 2); ctx.lineTo(W, GROUND + 2); ctx.stroke();
+
+    // obstacles
+    obstacles.forEach(o => {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(o.x, o.y, o.w, o.h);
+      ctx.fillStyle   = '#fff';
+      ctx.font        = 'bold 8.5px sans-serif';
+      ctx.textAlign   = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(o.label, o.x + o.w / 2, o.y + o.h / 2);
+    });
+
+    // player
+    if (playerImg.complete && playerImg.naturalWidth) {
+      ctx.drawImage(playerImg, player.x, player.y - P_H, P_W, P_H);
+    } else {
+      ctx.fillStyle = '#CCA0FF';
+      ctx.fillRect(player.x, player.y - P_H, P_W, P_H);
+    }
+
+    // score
+    if (state === 'running') {
+      ctx.fillStyle    = '#000';
+      ctx.font         = 'bold 13px sans-serif';
+      ctx.textAlign    = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText(score + ' disruptions', W - 10, 10);
+    }
+  }
+
+  // ---------- loop ----------
+  function loop() {
+    if (state === 'running') update();
+    draw();
+    animId = requestAnimationFrame(loop);
+  }
+
+  // ---------- screens ----------
+  function showOverlay(html) {
+    inner.innerHTML = html;
+    overlay.style.display = 'flex';
+  }
+  function hideOverlay() {
+    overlay.style.display = 'none';
+  }
+
+  function showGameOver() {
+    const medal = score < 30 ? '🌱' : score < 80 ? '⚡' : '🔥';
+    showOverlay(`
+      <div class="text-center px-6">
+        <p class="text-xs text-gray-500 mb-1">you disturbed</p>
+        <p class="text-4xl font-black mb-1">${score}</p>
+        <p class="text-sm font-bold mb-5">${medal} systems</p>
+        <button id="restart-btn" class="px-6 py-2 border-2 border-black font-bold bg-[#FFDC58] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow text-sm">
+          Again →
+        </button>
+      </div>
+    `);
+    document.getElementById('restart-btn')?.addEventListener('click', startGame);
+  }
+
+  function startGame() {
+    init();
+    state = 'running';
+    hideOverlay();
+  }
+
+  // ---------- input ----------
+  startBtn?.addEventListener('click', startGame);
+  canvas.addEventListener('click', jump);
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' || e.code === 'ArrowUp') {
+      e.preventDefault();
+      jump();
+    }
+  });
+  canvas.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); }, { passive: false });
+
+  // ---------- boot ----------
+  init();
+  draw();
+  loop();
+})();
+</script>

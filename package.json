@@ -1,0 +1,19 @@
+{
+  "name": "yuri",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/db": "^0.20.1",
+    "@astrojs/vercel": "^8.2.11",
+    "@tailwindcss/vite": "^4.1.1",
+    "astro": "^5.5.3",
+    "gsap": "^3.12.7",
+    "tailwindcss": "^4.1.1"
+  }
+}

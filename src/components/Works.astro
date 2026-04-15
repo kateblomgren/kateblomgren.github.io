@@ -1,0 +1,39 @@
+---
+import svgUnderline from '../assets/underline.svg'
+import arrowCard from '../assets/arrow-card.svg'
+import Bars from "./Bars.astro"
+
+const allPosts = (Object.values(import.meta.glob('../pages/posts/*.md', { eager: true })) as any[])
+  .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
+---
+
+<section class="py-12 space-y-10 px-5" id="work">
+    <div class="max-w-md mx-auto relative">
+      <h1 class="text-4xl font-medium text-center">News</h1>
+      <img src={svgUnderline.src} alt="underline" width="140" class="absolute left-1/2 -translate-x-1/2 -bottom-1" />
+    </div>
+
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+      {allPosts.map((post: any) => (
+        <a href={post.url} class="flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+          <div class="w-full h-[200px] overflow-hidden border-2">
+            <img src={post.frontmatter?.image?.url || '/placeholder.png'} alt={post.frontmatter?.image?.alt || ''} class="w-full h-full object-cover" />
+          </div>
+          <div class="space-y-1 pt-4">
+            <div class="flex pr-2">
+              <h2 class="text-xl font-medium flex-1 line-clamp-2">{post.frontmatter.title}</h2>
+              <img src={arrowCard.src} alt="arrow" width="25" />
+            </div>
+            <p class="text-sm text-gray-500">{post.frontmatter.pubDate}</p>
+          </div>
+          <Bars />
+        </a>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a href="/news/" class="inline-block px-6 py-2 border-2 border-black font-medium transition-all duration-200 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)]">
+        All News →
+      </a>
+    </div>
+</section>

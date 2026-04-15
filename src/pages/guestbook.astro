@@ -1,0 +1,231 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import GuestbookCard from "../components/GuestbookCard.astro";
+
+import { db, Guestbook } from "astro:db";
+
+const variants = [
+  { pill: 'bg-pink-200',   country: 'bg-purple-300', countryPos: 'bottom-0 right-6 translate-y-1/2 -rotate-6' },
+  { pill: 'bg-blue-200',   country: 'bg-pink-300',   countryPos: 'bottom-0 right-6 translate-y-1/2 rotate-3'  },
+  { pill: 'bg-purple-300', country: 'bg-blue-200',   countryPos: 'bottom-0 right-6 translate-y-1/2 -rotate-3' },
+  { pill: 'bg-red-300',    country: 'bg-yellow-300', countryPos: 'top-0 right-6 -translate-y-1/2 rotate-6'    },
+];
+
+// HANDLE FORM SUBMISSION
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+
+  const name = formData.get("name")?.toString().trim();
+  const message = formData.get("message")?.toString().trim();
+  const country = formData.get("country")?.toString().trim();
+  const link = formData.get("link")?.toString().trim();
+
+  if (!name || !message || !country) {
+    return Astro.redirect("/guestbook?error=missing");
+  }
+
+  await db.insert(Guestbook).values({
+    author: name,
+    content: message,
+    country,
+    link: link || null,
+    timestamp: new Date(),
+  });
+
+  return Astro.redirect("/guestbook?success=true");
+}
+
+// FETCH ENTRIES
+const entries = await db.select().from(Guestbook).all();
+---
+
+<Layout>
+  <Header />
+
+  <!-- Sticker book overlay — same system as About page, scrolls with page -->
+  <div id="sticker-book" class="absolute top-0 left-0 w-full pointer-events-none" style="min-height: 100vh; overflow: visible; z-index: 40;"></div>
+
+<div class="relative max-w-4xl mx-auto px-6 mt-10 flex flex-col md:flex-row gap-12">
+
+  <!-- LEFT: Contact info -->
+  <div class="w-full md:w-1/2 py-10">
+    <h1 class="text-4xl mb-8 font-bold">Get in Touch</h1>
+    <div class="space-y-4">
+      <div>
+        <p class="text-2xl font-bold">Kate Blomgren</p>
+        <p class="text-gray-600 mt-1">PhD Student | Media and Technology</p>
+        <p class="text-gray-600">Linköping University | Norrköping, Sweden</p>
+      </div>
+      <a href="mailto:kate.blomgren@liu.se" class="inline-block font-medium underline hover:opacity-70 transition-opacity">
+        kate.blomgren@liu.se
+      </a>
+      <div class="pt-2 space-y-3">
+        <a href="https://github.com/kateblomgren" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+          <i class="ri-github-fill text-xl"></i>
+          <span>github.com/kateblomgren</span>
+        </a>
+        <a href="https://liu.se/en/research/visualization-and-interaction-design" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+          <i class="ri-building-line text-xl"></i>
+          <span>Visualization & Interaction Design, LiU</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Guestbook form -->
+  <div class="w-full md:w-1/2 py-10">
+    <h1 class="text-4xl mb-3 font-bold">Guestbook</h1>
+    <p class="text-gray-600 mb-6">Feel free to sign my digital guestbook — say hi, leave a thought, or just let me know you stopped by.</p>
+
+    <!-- FORM -->
+    <form method="POST" class="flex flex-col gap-4 border-2 border-black p-6 bg-white">
+
+      <input name="name" placeholder="Your name" required class="border p-2" />
+
+      <input name="link" placeholder="Link (optional)" class="border p-2" />
+
+      <select name="country" required class="border p-2">
+        <option value="">Select country</option>
+        <option>Ukraine</option>
+        <option>Sweden</option>
+        <option>Germany</option>
+        <option>USA</option>
+        <option>UK</option>
+      </select>
+
+      <textarea
+        name="message"
+        placeholder="Leave a message..."
+        required
+        maxlength="150"
+        class="border p-2"
+      ></textarea>
+
+      <button type="submit" class="border-2 border-black p-2 bg-yellow-200">
+        Sign guestbook
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+ 
+
+
+  <section class="max-w-2xl mx-auto pt-6 pb-16 px-6">
+
+    <!-- ENTRIES -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-16">
+
+      {entries.map((entry, i) => (
+        <GuestbookCard
+          author={entry.author}
+          content={entry.content}
+          country={entry.country}
+          link={entry.link}
+          variant={variants[i % 4]}
+        />
+      ))}
+
+    </div>
+
+  </section>
+
+  <Footer />
+
+<script is:inline>
+  function addSticker(image, startX, startY) {
+    const container = document.getElementById('sticker-book');
+    if (!container) return;
+
+    if (document.querySelector(`[data-sticker="${image}"]`)) return;
+
+    const sticker = document.createElement('img');
+    sticker.src = image;
+    sticker.setAttribute('data-sticker', image);
+    sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
+    sticker.style.width = '110px';
+    sticker.style.willChange = 'transform';
+
+    const containerRect = container.getBoundingClientRect();
+    const x = startX !== undefined ? startX : Math.floor(Math.random() * 200 + 80);
+    const y = startY !== undefined ? startY : Math.floor(Math.random() * 200 + 100) - containerRect.top;
+
+    sticker.style.transform = `translate(${x}px, ${y}px) scale(0)`;
+    sticker.style.transition = 'transform 0.2s ease';
+
+    requestAnimationFrame(() => {
+      sticker.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+    });
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let currentX = x;
+    let currentY = y;
+    let rafId = null;
+
+    sticker.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = sticker.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      sticker.style.cursor = 'grabbing';
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const cRect = container.getBoundingClientRect();
+      currentX = e.clientX - cRect.left - offsetX;
+      currentY = e.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      sticker.style.cursor = 'grab';
+      sticker.style.transition = 'transform 0.2s ease';
+    });
+
+    sticker.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      const rect = sticker.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+      sticker.style.transition = 'none';
+      e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const cRect = container.getBoundingClientRect();
+      currentX = touch.clientX - cRect.left - offsetX;
+      currentY = touch.clientY - cRect.top - offsetY;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    }, { passive: false });
+
+    container.appendChild(sticker);
+  }
+
+  // Pre-spawn the hand sticker near "Get in Touch" heading
+  document.addEventListener('DOMContentLoaded', () => {
+    addSticker('/Untitled_Artwork-16.png', 40, 160);
+  });
+</script>
+
+</Layout>

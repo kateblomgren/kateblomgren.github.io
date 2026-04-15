@@ -1,0 +1,66 @@
+---
+import svgNew from '../assets/new.svg'
+
+const publications = (Object.values(
+  import.meta.glob('../pages/outputs/*.md', { eager: true })
+) as any[]).filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
+
+const tiltClasses = [
+  'rotate-2 -translate-y-8',
+  '-rotate-2 -translate-x-10 z-5',
+  'rotate-2 translate-x-5 z-5',
+  '-rotate-2 translate-y-10 md:translate-y-15',
+];
+---
+
+<section>
+  <div class="max-w-4xl mx-auto mt-10 pb-4 px-10 overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="flex relative">
+        <h1 class="text-3xl">Latest outputs</h1>
+      </div>
+    </div>
+
+    
+
+    <div class="relative grid grid-cols-1 md:grid-cols-2 py-12">
+      {publications.map((pub, i) => {
+        const fm = pub.frontmatter;
+        const image = fm.image || '/placeholder.png';
+        const tilt = tiltClasses[i % tiltClasses.length];
+        const authorsDisplay = Array.isArray(fm.authors)
+          ? fm.authors.map((a: any) => a.name).join(', ')
+          : (fm.authors ?? '');
+        return (
+          <a
+            href={pub.url}
+            class={`relative top-0 group flex flex-col gap-3 p-5 pr-15 bg-white border-2 shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-top-2 hover:scale-105 hover:shadow-[6px_12px_0px_rgba(0,0,0,0.3)] ${tilt}`}
+          >
+            { i === 0 && (
+              <img
+                src={svgNew.src}
+                alt=""
+                width="40"
+                class="absolute -top-14 right-2 rotate-6"
+              />
+            )}
+            <p class="line-clamp-3">
+              <span class="box-decoration-clone bg-[linear-gradient(transparent_calc(100%-0.45em),var(--yellow)_0)] bg-[length:0%_100%] bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_100%]">
+                {fm.title}
+              </span>
+            </p>
+            <div class="flex items-center gap-2">
+              <div class="size-11 rounded-full border overflow-hidden shrink-0">
+                <img src={image} alt="" class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h3 class="font-medium">{authorsDisplay}</h3>
+                <p class="text-sm text-gray-500">{fm.venue}</p>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>

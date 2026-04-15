@@ -1,0 +1,93 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+import AppHeader from '../components/Header.astro';
+import AppFooter from '../components/Footer.astro';
+
+const allOutputs = (Object.values(import.meta.glob('./outputs/*.md', { eager: true })) as any[])
+  .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
+const types = ['all', 'paper', 'thesis', 'poster'];
+---
+
+<Layout>
+    <AppHeader />
+
+    <section class="pt-16 pb-32">
+        <div class="max-w-3xl mx-auto px-4">
+
+          <div class="text-center mt-6 mb-10">
+            <h1 class="text-5xl font-black">Outputs</h1>
+          </div>
+
+          <!-- Filter buttons -->
+          <div class="flex flex-wrap gap-2 justify-center mb-10" id="filters">
+            {types.map(type => (
+              <button
+                data-filter={type}
+                class={`filter-btn px-4 py-1.5 border-2 border-black text-sm font-medium transition-all duration-150 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)] ${type === 'all' ? 'bg-[#ffda35]' : 'bg-white'}`}
+              >
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          <!-- Output cards -->
+          <div class="space-y-4" id="output-list">
+            {allOutputs.map(({ url, frontmatter, rawContent }: any) => {
+              const image = frontmatter.image || '/placeholder.png';
+              const type = frontmatter.type || 'other';
+              const authorsDisplay = Array.isArray(frontmatter.authors)
+                ? frontmatter.authors.map((a: any) => a.name).join(', ')
+                : (frontmatter.authors ?? '');
+              return (
+                <a
+                  href={url}
+                  data-type={type}
+                  class="output-card flex gap-4 items-center bg-white p-5 border-2 transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]"
+                >
+                  <div class="w-[160px] h-[110px] overflow-hidden border-2 flex-shrink-0">
+                    <img src={image} alt="" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="flex flex-col gap-1.5 flex-1">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-400">{type}</span>
+                    <h2 class="text-lg font-bold line-clamp-2">{frontmatter.title}</h2>
+                    <p class="text-sm text-gray-500">{authorsDisplay} · {frontmatter.venue}</p>
+                    <p class="text-sm text-gray-400 line-clamp-2" set:html={rawContent}></p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+        </div>
+    </section>
+
+    <AppFooter />
+</Layout>
+
+<script is:inline>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.output-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      buttons.forEach(b => {
+        b.classList.remove('bg-[#ffda35]');
+        b.classList.add('bg-white');
+      });
+      btn.classList.add('bg-[#ffda35]');
+      btn.classList.remove('bg-white');
+
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (filter === 'all' || type === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

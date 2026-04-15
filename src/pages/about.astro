@@ -1,0 +1,293 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro"
+
+import Header from '../components/Header.astro'
+import Tools from '../components/Tools.astro'
+import Footer from '../components/Footer.astro'
+
+const researchInterests = [
+  "Feminist epistemologies and their application to design research and human-centered systems",
+  "Critical data visualization as a method for surfacing issues of authorship, credit, and recognition in collaborative environments such as science museums",
+  "Ethics of visibility and labor, especially around how contributions are acknowledged or overlooked in public-facing technologies and institutions",
+  "Participatory and playful design methods, with a focus on inclusive practices and creative engagement with complex ethical topics",
+  "Procedural critique and representation in games, including how simulation and interaction encode values and social assumptions",
+]
+
+const education = [
+  {
+    title: "PhD in Media and Technology",
+    university: "Linköping University",
+    place: "August 2024 – present · Norrköping, Sweden",
+    description: "PhD research explores critical data visualization through the lens of feminist epistemologies, examining how knowledge, labor, and recognition are represented and negotiated in collaborative public-facing projects. The work is situated at the intersection of design research, social justice, and responsible computing."
+  },
+  {
+    title: "MA in Game Design",
+    university: "Uppsala University – Campus Gotland",
+    place: "September 2021 – June 2023 · Visby, Sweden",
+    description: "The thesis focused on how game mechanics can reflect and reproduce social values through procedural systems, offering feminist frameworks for game analysis and design."
+  },
+  {
+    title: "BA in Advertising",
+    university: "University of the Arts London – LCC",
+    place: "September 2013 – June 2016 · London, United Kingdom",
+    description: "Studied advertising strategy, creative direction, and visual storytelling within interdisciplinary teams and international contexts."
+  },
+]
+
+const teaching = [
+  {
+    title: "Supervisor – Bachelor's Thesis in Graphic Design and Communication",
+    company: "Linköping University",
+    year: "March 2025 – June 2025 · Norrköping, Sweden",
+    description: "Supervising a 16-credit thesis in Graphic Design and Communication, focusing on research framing, literature review, methodology, and ethical reflection."
+  },
+  {
+    title: "Co-Supervisor – Bachelor's Degree Project in Game Design and Graphics",
+    company: "Uppsala University",
+    year: "January 2024 – June 2024 · Visby, Sweden",
+    description: "Supported students in academic writing, critical reflection, and structuring research questions in alignment with social and ethical concerns."
+  },
+]
+
+const skills = [
+  { label: "Qualitative research", desc: "Designing interview protocols, conducting interviews, and analyzing responses through thematic and critical approaches" },
+  { label: "Academic writing", desc: "Structuring theses and research papers, conducting literature reviews, and formulating arguments with clarity" },
+  { label: "Workshop facilitation", desc: "Designing and leading participatory activities focused on ethics, recognition, and collaboration in interdisciplinary contexts" },
+  { label: "Research-through-design", desc: "Applying speculative, feminist, and participatory design methods in academic and collaborative projects" },
+  { label: "Visual communication", desc: "Graphic design, branding, layout, and visual storytelling for both academic and public-facing audiences" },
+  { label: "Basic web development", desc: "Knowledge of HTML, CSS, and JavaScript for prototyping interactive research tools and digital storytelling" },
+  { label: "Interdisciplinary collaboration", desc: "Experience working across design, education, and science institutions in both research and applied settings" },
+  { label: "Project planning & coordination", desc: "Managing timelines, documentation, and team communication in both academic and creative environments" },
+]
+
+const projects = [
+  {
+    title: "Visualisation Center Credit Project",
+    role: "Lead PhD Researcher",
+    year: "January 2024 – present · Norrköping, Sweden",
+    description: "Developing interactive data visualizations and participatory tools to represent contributions and credit in exhibition production. The project investigates how labor and authorship are distributed and recognized in interdisciplinary teams, with a focus on transparency, collaboration, and visitor engagement."
+  },
+  {
+    title: "GECO – Gamify Energy Communities",
+    role: "Researcher",
+    year: "October 2023 – present · Gotland, Sweden",
+    description: "Developing gamified facilitation tools to support inclusive and sustainable group dynamics in rural energy communities through design-driven research."
+  },
+  {
+    title: "Erasmus+ ROCKET & EDGE Projects",
+    role: "Graphic Designer",
+    year: "February 2023 – present · Sweden / Germany / The Netherlands",
+    description: "Designing visual materials and user interfaces for international education projects focused on role-playing games, inclusion, and interdisciplinary collaboration in higher education."
+  },
+]
+
+const languages = [
+  { lang: "Ukrainian", level: "Native proficiency" },
+  { lang: "English", level: "Full professional proficiency" },
+  { lang: "Swedish", level: "Intermediate proficiency" },
+]
+---
+
+
+<Layout>
+
+    <Header />
+
+    <a href="/guestbook/" class="absolute right-0 top-0 m-4 px-3 py-1 bg-yellow-300 border-2 border-black rounded z-20">Get in Touch</a>
+
+    <div id="sticker-book" class="absolute right-0 top-0 w-64 h-[2000px] pointer-events-none"></div>
+
+    <!-- Bio -->
+    <section class="max-w-3xl mx-auto py-16 px-6">
+      <div class="flex flex-col md:flex-row gap-10 items-start">
+        <div class="flex-1">
+          <h1 class="text-4xl font-medium mb-6">About Me</h1>
+          <p class="text-lg leading-relaxed">
+            I'm a PhD student at <a href="https://liu.se/en/research/visualization-and-interaction-design" class="font-bold underline" target="_blank">Linköping University</a>, where I'm supervised by <a href="https://miriah.github.io/" class="font-bold underline" target="_blank">Miriah Meyer</a>. My research sits at the intersection of data visualization, game design, and feminist theory. Originally from Kyiv, <span class="underline cursor-pointer" onclick="addSticker('/stickers/uk-tri.png')">Ukraine</span>, and now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/norr-uni.png')">Norrköping, Sweden</span>, I bring my background in graphic design into my academic work, exploring how systems—visual, procedural, and social—can carry messages of inclusivity, equity, and care. I'm particularly interested in how play and interactivity can be used as critical tools to question norms, challenge hierarchies, and reimagine how we give credit and recognize contributions—especially in spaces like science museums.
+          </p>
+          <p class="text-lg leading-relaxed mt-4">
+            When I'm not working, I love cozy games, quiet moments with my cats, and spending time with my wife and family.
+          </p>
+        </div>
+        <div class="w-full md:w-[240px] flex-shrink-0">
+          <img src="/Untitled_Artwork-15.png" alt="Just like other girls illustration" class="w-full" />
+        </div>
+      </div>
+    </section>
+
+    <Tools />
+
+    <!-- CV -->
+    <section class="max-w-3xl mx-auto py-16 px-6" id="cv-section">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="text-3xl font-bold">CV</h2>
+        <a href="/BlomgrenCV.pdf" download class="px-4 py-2 border-2 border-black bg-white font-medium text-sm transition-all duration-200 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)]">
+          Download CV ↓
+        </a>
+      </div>
+
+      <!-- Research Interests -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Research Interests</h3>
+        <ul class="space-y-2">
+          {researchInterests.map(item => (
+            <li class="flex gap-3">
+              <span class="text-gray-400 mt-1">❖</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Education</h3>
+        <div class="space-y-8">
+          {education.map(item => (
+            <div>
+              <p class="font-bold">{item.title}</p>
+              <p class="text-gray-600">{item.university}</p>
+              <p class="text-sm text-gray-400 mb-2">{item.place}</p>
+              <p class="text-sm leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Teaching & Supervision -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Teaching & Supervision</h3>
+        <div class="space-y-8">
+          {teaching.map(item => (
+            <div>
+              <p class="font-bold">{item.title}</p>
+              <p class="text-gray-600">{item.company}</p>
+              <p class="text-sm text-gray-400 mb-2">{item.year}</p>
+              <p class="text-sm leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Academic & Design Projects -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Academic & Design Projects</h3>
+        <div class="space-y-8">
+          {projects.map(item => (
+            <div>
+              <p class="font-bold">{item.title} <span class="font-normal text-gray-600">/ {item.role}</span></p>
+              <p class="text-sm text-gray-400 mb-2">{item.year}</p>
+              <p class="text-sm leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Skills</h3>
+        <ul class="space-y-2">
+          {skills.map(item => (
+            <li class="flex gap-3">
+              <span class="text-gray-400 mt-1">❖</span>
+              <span><span class="font-bold">{item.label}:</span> {item.desc}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Languages -->
+      <div class="mb-12">
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Languages</h3>
+        <ul class="space-y-2">
+          {languages.map(item => (
+            <li class="flex gap-3">
+              <span class="text-gray-400 mt-1">❖</span>
+              <span><span class="font-bold">{item.lang}</span> — {item.level}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </section>
+
+    <Footer />
+
+<style>
+  @media print {
+    header, footer, #sticker-book, a[href="/guestbook/"] {
+      display: none !important;
+    }
+    body {
+      background: white;
+    }
+    #cv-section {
+      padding-top: 0;
+    }
+  }
+</style>
+
+<script is:inline>
+  window.addSticker = function (image) {
+    const container = document.getElementById('sticker-book');
+    if (!container) return;
+
+    if (document.querySelector(`[data-sticker="${image}"]`)) return;
+
+    const sticker = document.createElement('img');
+    sticker.src = image;
+    sticker.setAttribute('data-sticker', image);
+    sticker.className = 'absolute h-30 w-auto max-w-none cursor-grab pointer-events-auto';
+    sticker.style.willChange = 'transform';
+
+    const startX = Math.floor(Math.random() * 120 + 10);
+    const startY = Math.floor(Math.random() * 300 + 50);
+
+    sticker.style.transform = `translate(${startX}px, ${startY}px) scale(0)`;
+    sticker.style.transition = "transform 0.2s ease";
+
+    requestAnimationFrame(() => {
+      sticker.style.transform = `translate(${startX}px, ${startY}px) scale(1)`;
+    });
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let currentX = startX;
+    let currentY = startY;
+    let rafId = null;
+
+    sticker.addEventListener('mousedown', (e) => {
+      const rect = sticker.getBoundingClientRect();
+      isDragging = true;
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      sticker.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const containerRect = container.getBoundingClientRect();
+      const x = e.clientX - containerRect.left - offsetX;
+      const y = e.clientY - containerRect.top - offsetY;
+      currentX = x;
+      currentY = y;
+      sticker.style.transition = 'none';
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
+      });
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      sticker.style.cursor = 'grab';
+      sticker.style.transition = "transform 0.2s ease";
+    });
+
+    container.appendChild(sticker);
+  }
+</script>
+</Layout>

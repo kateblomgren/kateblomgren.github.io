@@ -146,6 +146,31 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
         <!-- ── RIGHT: sticky sidebar ── -->
         <div class="w-full md:w-56 flex-shrink-0 md:sticky md:top-32 space-y-4">
 
+          <!-- PDF / DOI buttons — top of sidebar -->
+          {frontmatter.pdf && (
+            <a
+              href={frontmatter.pdf}
+              download
+              class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
+            >
+              <i class="ri-download-line text-lg"></i> Download PDF
+            </a>
+          )}
+
+          {frontmatter.doi && (
+            <a
+              href={frontmatter.doi}
+              target="_blank"
+              class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
+            >
+              <i class="ri-external-link-line text-lg"></i> View DOI
+            </a>
+          )}
+
+          {(frontmatter.pdf || frontmatter.doi) && (
+            <div class="border-t-2 border-dashed border-gray-300"></div>
+          )}
+
           <!-- Type sticker -->
           <div
             class="inline-block border-2 border-black px-4 py-2 font-black text-sm uppercase tracking-widest shadow-[3px_3px_0px_rgba(0,0,0,0.3)] select-none relative transition-transform hover:rotate-0"
@@ -233,31 +258,6 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
                 ))}
               </div>
             </div>
-          )}
-
-          <!-- Divider -->
-          <div class="border-t-2 border-dashed border-gray-300 my-1"></div>
-
-          <!-- PDF button -->
-          {frontmatter.pdf && (
-            <a
-              href={frontmatter.pdf}
-              target="_blank"
-              class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
-            >
-              <i class="ri-file-pdf-line text-lg"></i> Read PDF
-            </a>
-          )}
-
-          <!-- DOI button -->
-          {frontmatter.doi && (
-            <a
-              href={frontmatter.doi}
-              target="_blank"
-              class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
-            >
-              <i class="ri-external-link-line text-lg"></i> View DOI
-            </a>
           )}
 
           <!-- Toggle note cards -->

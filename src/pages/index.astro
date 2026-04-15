@@ -112,14 +112,14 @@ import TwoTruths from '../components/TwoTruths.astro'
     container.appendChild(sticker);
   };
 
-  // Pre-spawn Untitled_Artwork-11 visible from page load
+  // Pre-spawn girl-with-headphones sticker visible from page load
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('sticker-book');
     if (!container) return;
 
     const sticker = document.createElement('img');
-    sticker.src = '/Untitled_Artwork-11.png';
-    sticker.setAttribute('data-sticker', '/Untitled_Artwork-11.png');
+    sticker.src = '/stickers/girl-with-headphones.png';
+    sticker.setAttribute('data-sticker', '/stickers/girl-with-headphones.png');
     sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
     sticker.style.width = '160px';
     sticker.style.willChange = 'transform';

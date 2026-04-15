@@ -6,7 +6,7 @@ authors:
   - name: "Kate Blomgren"
     url: "https://kateblomgren.github.io"
 venue: ""
-image: "/Untitled_Artwork-5.png"
+image: "/stickers/orange-cat-standing.png"
 pubDate: "2026"
 notes:
 

@@ -5,12 +5,14 @@ author:
   name: "Kate Blomgren"
   url: "/photo-kate.png"
 image:
-  url: "/placeholder.png"
+  url: "/images/skovde.png"
   alt: "Presentation at Skövde Game Conference"
 tags: ["conference", "games", "talk"]
-pubDate: 'Month DD, YYYY'
+pubDate: 'October 4, 2024'
 ---
 
-I was invited to speak at the Skövde Game Conference, where I presented my research and engaged with a community working across game design and game studies.
+I was excited to present my work at the Skövde Game Conference, together with [Josephine Baird](chatgpt://generic-entity?number=0).
 
-It was a great opportunity to share ideas, reflect on my work in a different context, and connect with others thinking about games from both creative and critical perspectives.
+The talk focused on feminist game mechanics and how systems can carry meaning beyond representation.
+
+It was a great opportunity to discuss ideas, reflect on my work, and engage with a thoughtful and curious audience.

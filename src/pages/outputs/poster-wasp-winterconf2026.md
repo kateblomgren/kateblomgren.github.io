@@ -6,8 +6,8 @@ title: "Crediting as a Socio-Technical Practice"
 authors:
   - name: "Kate Blomgren"
     url: "https://kateblomgren.github.io"
-venue: "WASP Winter Conference, Örebro, 2026"
-image: "/public/outputs/poster-2026wasp-winterconf.png"
+venue: "WASP Winter Conference, Örebro"
+image: "/outputs/poster-2026wasp-winterconf.png"
 imageCaption: "Poster presented at WASP Winter Conference, Örebro, January 2026."
 pubDate: "2026-01-15"
 ---

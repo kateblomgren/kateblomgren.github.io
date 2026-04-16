@@ -8,10 +8,8 @@ const allProjects = (Object.values(
   import.meta.glob('./projects/*.md', { eager: true })
 ) as any[]).filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
 
-// Sort by the `order` frontmatter field (ascending), fallback to 99
-// Files starting with _ (like _template.md) are ignored by Astro routing already
 const projects = allProjects
-  .sort((a, b) => (a.frontmatter.order ?? 99) - (b.frontmatter.order ?? 99));
+  .sort((a: any, b: any) => new Date(b.frontmatter?.pubDate ?? 0).getTime() - new Date(a.frontmatter?.pubDate ?? 0).getTime());
 ---
 
 <Layout>

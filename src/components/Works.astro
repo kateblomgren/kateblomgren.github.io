@@ -16,7 +16,7 @@ const allPosts = (Object.values(import.meta.glob('../pages/posts/*.md', { eager:
 
     <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
       {allPosts.map((post: any) => (
-        <a href={post.url} class="flex flex-col bg-white p-5 group relative top-0 border-2 transition-all duration-200 hover:-top-2 hover:scale-105 hover:shadow-[6px_12px_0px_rgba(0,0,0,0.3)]">
+        <a href={post.url} class="flex flex-col bg-white p-5 group relative top-0 transition-all duration-200 hover:-top-2 hover:scale-105 hover:shadow-[6px_12px_0px_rgba(0,0,0,0.3)]">
           <div class="w-full h-[200px] overflow-hidden border-2">
             <img src={post.frontmatter?.image?.url || '/placeholder.png'} alt={post.frontmatter?.image?.alt || ''} class="w-full h-full object-cover" />
           </div>

@@ -38,7 +38,7 @@ function toLastFirst(fullName: string): string {
 
 const authorBibtex = authors.map(a => toLastFirst(a.name)).join(' and ');
 const keyAuthor    = authors[0]?.name.trim().split(/\s+/).pop()?.toLowerCase() ?? 'unknown';
-const keyYear      = frontmatter.pubDate ?? 'nd';
+const keyYear      = frontmatter.pubDate ? new Date(frontmatter.pubDate).getFullYear().toString() : 'nd';
 const citeKey      = `${keyAuthor}${keyYear}`;
 
 const bibType = frontmatter.type === 'thesis'
@@ -240,7 +240,7 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
             >
               <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#CCA0FF] border border-purple-300 opacity-80"></span>
               <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-0.5">Year</p>
-              <p class="text-xl font-black">{frontmatter.pubDate}</p>
+              <p class="text-xl font-black">{new Date(frontmatter.pubDate).getFullYear()}</p>
             </div>
           )}
 

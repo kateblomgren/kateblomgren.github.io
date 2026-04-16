@@ -11,7 +11,7 @@ authors:
 venue: "Conference / Journal / Institution, Year"
 image: "/your-cover-image.png"
 imageCaption: "Short annotation or description shown in the polaroid caption area."  # optional
-pubDate: "YYYY"
+pubDate: "YYYY-MM-DD"  # full date controls sort order; only year is displayed
 # OPTIONAL fields — remove lines you don't need:
 pdf: "https://link-to-pdf.com"
 doi: "https://doi.org/..."

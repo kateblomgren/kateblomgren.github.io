@@ -52,7 +52,7 @@ const types = ['all', 'paper', 'thesis', 'poster'];
                   <div class="flex flex-col gap-1.5 flex-1">
                     <span class="text-xs font-bold uppercase tracking-wider text-gray-400">{type}</span>
                     <h2 class="text-lg font-bold line-clamp-2">{frontmatter.title}</h2>
-                    <p class="text-sm text-gray-500">{authorsDisplay} · {frontmatter.venue}</p>
+                    <p class="text-sm text-gray-500">{authorsDisplay} · {frontmatter.venue} · {frontmatter.pubDate ? new Date(frontmatter.pubDate).getFullYear() : ''}</p>
                     <p class="text-sm text-gray-400 line-clamp-2" set:html={rawContent}></p>
                   </div>
                 </a>

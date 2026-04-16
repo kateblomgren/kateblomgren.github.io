@@ -16,6 +16,10 @@ Built with [Astro](https://astro.build) + TailwindCSS. Deployed via Vercel.
 ```bash
 npm install
 npm run dev
+
+git add .
+      git commit -m "describe what you changed"
+      git push origin gh-pages
 ```
 
 Environment variables required (create `.env` in root):

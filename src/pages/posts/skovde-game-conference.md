@@ -11,7 +11,7 @@ tags: ["conference", "games", "talk"]
 pubDate: 'October 4, 2024'
 ---
 
-I was excited to present my work at the Skövde Game Conference, together with [Josephine Baird](chatgpt://generic-entity?number=0).
+I was excited to present my work at the Skövde Game Conference, together with together with breathtaking [Josephine Baird](https://josephinebaird.com/).
 
 The talk focused on feminist game mechanics and how systems can carry meaning beyond representation.
 

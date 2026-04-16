@@ -4,9 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import AppHeader from '../components/Header.astro';
 import AppFooter from '../components/Footer.astro';
 
-const allProjects = Object.values(
+const allProjects = (Object.values(
   import.meta.glob('./projects/*.md', { eager: true })
-) as any[];
+) as any[]).filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
 
 // Sort by the `order` frontmatter field (ascending), fallback to 99
 // Files starting with _ (like _template.md) are ignored by Astro routing already

@@ -9,47 +9,39 @@ import AppFooter from '../components/Footer.astro';
   <AppHeader />
 
   <section class="min-h-[70vh] flex items-center justify-center px-4 py-20">
-    <div class="max-w-lg w-full text-center">
 
-      <!-- Card -->
-      <div class="relative border-3 border-black bg-white p-10 shadow-[6px_6px_0px_rgba(0,0,0,0.15)]">
-        <!-- Corner squares -->
-        <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -right-1.5"></div>
-        <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -left-1.5"></div>
-        <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -left-1.5"></div>
-        <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -right-1.5"></div>
+    <div class="relative border-3 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,0.15)] flex items-center gap-6 p-8 max-w-md w-full">
+      <!-- Corner squares -->
+      <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -right-1.5"></div>
+      <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -left-1.5"></div>
+      <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -left-1.5"></div>
+      <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -right-1.5"></div>
 
-        <!-- Sticker -->
-        <img
-          src="/stickers/girl-on-fire.png"
-          alt="Girl on fire"
-          class="w-40 mx-auto mb-4 drop-shadow-md"
-        />
+      <!-- Left: sticker -->
+      <img
+        src="/stickers/girl-on-fire.png"
+        alt="Girl on fire"
+        class="w-28 flex-shrink-0 drop-shadow-md"
+      />
 
-        <!-- 404 -->
-        <p class="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Error 404</p>
-        <h1 class="text-5xl font-black mb-4">Page not found</h1>
-        <p class="text-gray-500 mb-8 leading-relaxed">
+      <!-- Right: text -->
+      <div>
+        <p class="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Error 404</p>
+        <h1 class="text-3xl font-black mb-2">Page not found</h1>
+        <p class="text-sm text-gray-500 mb-5 leading-relaxed">
           This page doesn't exist — or maybe it used to and is now on fire.
         </p>
-
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href="/"
-            class="px-6 py-2.5 border-2 border-black bg-[#FFDC58] font-bold text-sm hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
-          >
+        <div class="flex flex-col gap-2">
+          <a href="/" class="px-4 py-2 border-2 border-black bg-[#FFDC58] font-bold text-sm text-center hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow">
             ← Back to Home
           </a>
-          <a
-            href="/outputs"
-            class="px-6 py-2.5 border-2 border-black bg-white font-bold text-sm hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
-          >
+          <a href="/outputs" class="px-4 py-2 border-2 border-black bg-white font-bold text-sm text-center hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow">
             Browse Outputs
           </a>
         </div>
       </div>
-
     </div>
+
   </section>
 
   <AppFooter />

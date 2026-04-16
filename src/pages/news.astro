@@ -4,7 +4,13 @@ import Layout from "../layouts/Layout.astro";
 
 import AppHeader from '../components/Header.astro';
 import AppFooter from '../components/Footer.astro';
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const allPosts = (Object.values(import.meta.glob('./posts/*.md', { eager: true })) as any[])
+  .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'))
+  .sort((a: any, b: any) => {
+    const dateA = new Date(a.frontmatter?.pubDate ?? 0);
+    const dateB = new Date(b.frontmatter?.pubDate ?? 0);
+    return dateB.getTime() - dateA.getTime();
+  });
 
 ---
 
@@ -26,8 +32,9 @@ const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })
                 </div>
                 </div>
                 <div class="flex flex-col gap-2">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400">{frontmatter.pubDate}</p>
                     <h1 class="line-clamp-2 text-xl font-bold">{frontmatter.title}</h1>
-                    <div class="line-clamp-2" set:html={rawContent}></div>
+                    <div class="line-clamp-2 text-sm text-gray-600" set:html={rawContent}></div>
                 </div>
                </a>
              )}

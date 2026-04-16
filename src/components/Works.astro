@@ -4,7 +4,8 @@ import arrowCard from '../assets/arrow-card.svg'
 import Bars from "./Bars.astro"
 
 const allPosts = (Object.values(import.meta.glob('../pages/posts/*.md', { eager: true })) as any[])
-  .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'));
+  .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'))
+  .sort((a: any, b: any) => new Date(b.frontmatter?.pubDate ?? 0).getTime() - new Date(a.frontmatter?.pubDate ?? 0).getTime());
 ---
 
 <section class="py-12 space-y-10 px-5" id="work">

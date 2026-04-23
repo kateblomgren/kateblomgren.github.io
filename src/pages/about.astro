@@ -96,7 +96,7 @@ const languages = [
 
     <a href="/guestbook/" class="absolute right-0 top-0 m-4 px-3 py-1 bg-yellow-300 border-2 border-black rounded z-20">Get in Touch</a>
 
-    <div id="sticker-book" class="absolute right-0 top-0 w-64 h-[2000px] pointer-events-none"></div>
+    <div id="sticker-book" class="hidden md:block absolute right-0 top-0 w-64 h-[2000px] pointer-events-none"></div>
 
     <!-- Bio -->
     <section class="max-w-3xl mx-auto py-16 px-6">
@@ -104,7 +104,7 @@ const languages = [
         <div class="flex-1">
           <h1 class="text-4xl font-medium mb-6">About Me</h1>
           <p class="text-lg leading-relaxed">
-            I'm a PhD researcher in Data Visualisation at <a href="https://liu.se/en/research/visualization-and-interaction-design" class="font-bold underline" target="_blank">Linköping University</a>, working at the intersection of interactive data visualization, feminist theory, and game studies. Originally from <span class="underline cursor-pointer" onclick="addSticker('/stickers/uk-tri.png')">Ukraine</span>, I'm now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/norr-uni.png')">Norrköping, Sweden</span>.
+            I'm a PhD researcher in Data Visualisation at <a href="https://liu.se/en/research/visualization-and-interaction-design" class="font-bold underline" target="_blank">Linköping University</a>, working at the intersection of interactive data visualization, feminist theory, and game studies. Originally from <span class="underline cursor-pointer" onclick="addSticker('/stickers/uk-tri.png', this)">Ukraine</span>, I'm now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/norr-uni.png', this)">Norrköping, Sweden</span>.
           </p>
           <p class="text-lg leading-relaxed mt-4">
             At the heart of my work is a curiosity about epistemology — about how knowledge is made, and who gets to make it. I like to challenge the idea that science and data can simply speak for themselves as neutral, objective truths. Every outcome of science reflects choices about what to show, how to show it, and whose perspective gets centered. Design, in this sense, is always a statement — and I'm interested in making that statement conscious.
@@ -113,7 +113,7 @@ const languages = [
             Much of my current work unfolds in and around science museums, where complex, contested ideas meet wider publics. I'm curious about the choices embedded in those encounters — and what it might mean to make them differently.
           </p>
           <p class="text-lg leading-relaxed mt-4">
-            Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/orange-cat-standing.png')">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/dog-in-box.png')">dog</span>. I love video games, crocheting, Lego, and board games.
+            Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/orange-cat-standing.png', this)">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/dog-in-box.png', this)">dog</span>. I love video games, crocheting, Lego, and board games.
           </p>
         </div>
         <div class="w-full md:w-[240px] flex-shrink-0 space-y-6">
@@ -260,52 +260,58 @@ const languages = [
 </style>
 
 <script is:inline>
-  window.addSticker = function (image) {
+  window.addSticker = function (image, triggerEl) {
+    // No stickers on mobile
+    if (window.innerWidth < 768) return;
+
     const container = document.getElementById('sticker-book');
     if (!container) return;
-
     if (document.querySelector(`[data-sticker="${image}"]`)) return;
+
+    // Work out Y: align sticker with the clicked word.
+    // Both elRect.top and containerRect.top are viewport-relative,
+    // so their difference gives the correct container-space Y regardless of scroll.
+    const containerRect = container.getBoundingClientRect();
+    let startY = 80; // fallback
+    if (triggerEl) {
+      const elRect = triggerEl.getBoundingClientRect();
+      startY = elRect.top - containerRect.top - 30;
+    }
+    // Small random horizontal jitter within the column width
+    const startX = Math.floor(Math.random() * 80 + 10);
 
     const sticker = document.createElement('img');
     sticker.src = image;
     sticker.setAttribute('data-sticker', image);
-    sticker.className = 'absolute h-30 w-auto max-w-none cursor-grab pointer-events-auto';
+    sticker.className = 'absolute w-[110px] h-auto cursor-grab pointer-events-auto drop-shadow-md';
     sticker.style.willChange = 'transform';
-
-    const startX = Math.floor(Math.random() * 120 + 10);
-    const startY = Math.floor(Math.random() * 300 + 50);
-
     sticker.style.transform = `translate(${startX}px, ${startY}px) scale(0)`;
-    sticker.style.transition = "transform 0.2s ease";
+    sticker.style.transition = 'transform 0.2s ease';
 
     requestAnimationFrame(() => {
       sticker.style.transform = `translate(${startX}px, ${startY}px) scale(1)`;
     });
 
     let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-    let currentX = startX;
-    let currentY = startY;
+    let offsetX = 0, offsetY = 0;
+    let currentX = startX, currentY = startY;
     let rafId = null;
 
     sticker.addEventListener('mousedown', (e) => {
-      const rect = sticker.getBoundingClientRect();
       isDragging = true;
+      const rect = sticker.getBoundingClientRect();
       offsetX = e.clientX - rect.left;
       offsetY = e.clientY - rect.top;
       sticker.style.cursor = 'grabbing';
+      sticker.style.transition = 'none';
       e.preventDefault();
     });
 
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
-      const containerRect = container.getBoundingClientRect();
-      const x = e.clientX - containerRect.left - offsetX;
-      const y = e.clientY - containerRect.top - offsetY;
-      currentX = x;
-      currentY = y;
-      sticker.style.transition = 'none';
+      const cRect = container.getBoundingClientRect();
+      currentX = e.clientX - cRect.left - offsetX;
+      currentY = e.clientY - cRect.top - offsetY;
       if (rafId) cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
         sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(1)`;
@@ -315,7 +321,7 @@ const languages = [
     document.addEventListener('mouseup', () => {
       isDragging = false;
       sticker.style.cursor = 'grab';
-      sticker.style.transition = "transform 0.2s ease";
+      sticker.style.transition = 'transform 0.2s ease';
     });
 
     container.appendChild(sticker);

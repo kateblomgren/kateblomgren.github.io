@@ -1,16 +1,15 @@
 ---
 layout: ../../components/MarkdownPost.astro
-title: "WASP Winter Conference in Norrköping"
-author:
-  name: "Kate Blomgren"
-  url: "/photo-kate.png"
+title: "WASP Winter Conference in Örebro"
 image:
-  url: "/wasp-poster.png"
-  alt: "WASP Winter Conference poster"
+  url: "/news-pics/wasp-poster.png"
+  alt: "WASP Winter Conference in Örebro"
 tags: ["conference", "AI", "research"]
-pubDate: 'January 2026'
+pubDate: 'January 14, 2026'
 ---
 
-Attended the WASP Winter Conference in Norrköping, bringing together researchers working in AI and related areas.
+Attended the WASP Winter Conference in Örebro.
 
-The conference offered a space to exchange ideas, hear about ongoing work, and situate my own research within a broader AI context.
+It is always inspiring to see the work of other WASP students and to get a sense of the scale and diversity of ongoing research.
+
+Also received my annual WASP rubber duck, which I am starting to consider an important part of the experience.

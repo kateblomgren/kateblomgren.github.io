@@ -116,8 +116,36 @@ const languages = [
             Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/orange-cat-standing.png')">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/dog-in-box.png')">dog</span>. I love video games, crocheting, Lego, and board games.
           </p>
         </div>
-        <div class="w-full md:w-[240px] flex-shrink-0">
+        <div class="w-full md:w-[240px] flex-shrink-0 space-y-6">
           <img src="/stickers/just-like-other-girls.png" alt="Just like other girls illustration" class="w-full" />
+
+          <!-- Role card -->
+          <div class="relative bg-[#CCA0FF] border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0" style="transform: rotate(-1.5deg);">
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FFDC58] border border-yellow-400 opacity-80"></span>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-1">Role</p>
+            <p class="text-sm font-bold leading-snug">PhD Researcher</p>
+            <p class="text-xs text-gray-700 mt-0.5">Media & Technology</p>
+          </div>
+
+          <!-- Location card -->
+          <div class="relative bg-white border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0" style="transform: rotate(1deg);">
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#AEF5D4] border border-green-300 opacity-80"></span>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1">Based in</p>
+            <p class="text-sm font-bold leading-snug">Norrköping, Sweden</p>
+            <p class="text-xs text-gray-500 mt-0.5">originally from Ukraine 🇺🇦</p>
+          </div>
+
+          <!-- Interests card -->
+          <div class="relative bg-[#FFDC58] border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0" style="transform: rotate(-1deg);">
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FEA7CC] border border-pink-300 opacity-80"></span>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-2">When not researching</p>
+            <div class="flex flex-wrap gap-1">
+              {['🎮 games', '🧶 crochet', '🧱 lego', '🎲 board games'].map(tag => (
+                <span class="text-xs bg-white border border-black px-2 py-0.5 font-medium">{tag}</span>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

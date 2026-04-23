@@ -3,12 +3,13 @@ layout: ../../components/PublicationPost.astro
 type: "paper"
 title: "Challenges and Opportunities for Giving Credit in Science Museums"
 authors:
-  - name: "Kate "
-    url: "https://kateblomgren.github.io"
-venue: 
+venue: ""
 image: "/stickers/cat-in-bag.png"
-pubDate: "2026"
+pubDate: "2026-09-30"
 notes:
-  - icon: "💡"
-    title: "Coming soon"
-    
+
+  - title: "Comming soon"
+    text: "Submitted and fingers crossed."
+---
+
+Comming soon ^-^

@@ -28,7 +28,9 @@ import TwoTruths from '../components/TwoTruths.astro'
 </Layout>
 
 <script is:inline>
-  window.addSticker = function (image) {
+  window.addSticker = function (image, triggerEl) {
+    if (window.innerWidth < 768) return;
+
     const container = document.getElementById('sticker-book');
     if (!container) return;
 
@@ -38,13 +40,17 @@ import TwoTruths from '../components/TwoTruths.astro'
     sticker.src = image;
     sticker.setAttribute('data-sticker', image);
     sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
-    sticker.style.width = '160px';
+    sticker.style.width = '140px';
     sticker.style.willChange = 'transform';
 
+    // Spawn at the same vertical level as the clicked word, in the left margin
     const containerRect = container.getBoundingClientRect();
-    // Spawn in the left free margin area
-    const startX = Math.floor(Math.random() * 80 + 15);
-    const startY = Math.floor(Math.random() * 180 + 160) - containerRect.top;
+    const startX = Math.floor(Math.random() * 60 + 10);
+    let startY = 160;
+    if (triggerEl) {
+      const elRect = triggerEl.getBoundingClientRect();
+      startY = elRect.top - containerRect.top - 30;
+    }
 
     sticker.style.transform = `translate(${startX}px, ${startY}px) scale(0)`;
     sticker.style.transition = 'transform 0.2s ease';

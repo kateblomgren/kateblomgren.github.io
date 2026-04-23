@@ -124,15 +124,14 @@ import TwoTruths from '../components/TwoTruths.astro'
     if (!container) return;
 
     const sticker = document.createElement('img');
-    sticker.src = '/Untitled_Artwork-11.png';
-    sticker.setAttribute('data-sticker', '/Untitled_Artwork-11.png');
+    sticker.src = '/stickers/girl-with-headphones.png';
+    sticker.setAttribute('data-sticker', '/stickers/girl-with-headphones.png');
     sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
     sticker.style.width = '160px';
     sticker.style.willChange = 'transform';
 
-    const containerRect = container.getBoundingClientRect();
     let currentX = 20;
-    let currentY = 170 - containerRect.top;
+    let currentY = 170;
 
     sticker.style.transform = `translate(${currentX}px, ${currentY}px) scale(0)`;
     sticker.style.transition = 'transform 0.2s ease';

@@ -5,8 +5,8 @@ author:
   name:
   url: 
 image:
-  url: "/news-pics/1777299023701.jpeg
-  alt: "Group photo of WASP PhD students standing and sitting outside a modern university building with large glass windows and a gold geometric facade, on a sunny day during a study trip in the north of the UK."
+  url: "/news-pics/1777299023701.jpeg"
+  alt: "Group photo of WASP PhD students during a study trip in the north of the UK."
 tags: ["WASP", "research", "PhD", "study trip"]
 pubDate: 'April 26, 2026'
 ---

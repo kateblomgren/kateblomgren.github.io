@@ -119,8 +119,8 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
           </div>
           <div class="clear-both"></div>
 
-          <!-- BibTeX block -->
-          <div class="mt-12 border-2 border-black">
+          <!-- BibTeX block (hidden for talks) -->
+          {frontmatter.type !== 'talk' && <div class="mt-12 border-2 border-black">
             <button
               id="bibtex-toggle"
               class="w-full flex items-center justify-between px-4 py-3 font-bold text-sm hover:bg-gray-50 transition-colors"
@@ -139,7 +139,7 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
                 </button>
               </div>
             </div>
-          </div>
+          </div>}
 
         </div>
 

@@ -7,7 +7,7 @@ authors:
     url: "https://kateblomgren.github.io"
 venue: "giCentre Seminar, City St George's, University of London, 2026"
 image: "/news-pics/gicentre-seminar-london.png"
-pdf: "src/pages/outputs/LNDN_(6).pdf"
+pdf: "/outputs/LNDN_(6).pdf"
 imageCaption: "Seminar talk at the giCentre, City St George's, University of London."
 pubDate: "2026-04-27"
 keywords: "science museums, HCI, visualization, credit-giving, authorship, collaboration, interactive exhibits"

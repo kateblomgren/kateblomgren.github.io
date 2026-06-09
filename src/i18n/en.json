@@ -1,0 +1,251 @@
+{
+  "nav": {
+    "about": "About Me",
+    "outputs": "Outputs",
+    "projects": "Projects",
+    "news": "News",
+    "contact": "Get in Touch",
+    "menu": "Menu"
+  },
+
+  "footer": {
+    "rights": "All rights reserved."
+  },
+
+  "hero": {
+    "role": "PhD student",
+    "asking": "asking",
+    "uncomfortable": "uncomfortable",
+    "questions": "questions",
+    "intro": "I'm a PhD student at Linköping University, Campus Norrköping, focusing on the sociotechnical dimensions of HCI, the entanglement of systems and power, and using critical reflections to examine how technical systems affect people.",
+    "cta": "My Research Outputs",
+    "tooltip": {
+      "title": "Kate Blomgren",
+      "lines": [
+        "Critical Researcher,",
+        "Mother of Cats,",
+        "Disturber of Systems,",
+        "Accidental Island Dweller,",
+        "Reader of Footnotes and Between the Lines,",
+        "Crocheter of Things That Probably Don't Need Crocheting,",
+        "Translator of Technical Things into Human Problems,",
+        "Occasional Saver of Zelda,",
+        "and Personally Appointed Chauffeur of the Passenger Princess"
+      ]
+    }
+  },
+
+  "tools": {
+    "items": [
+      "Feminist Theory",
+      "Devil Cats",
+      "Epistemologies",
+      "Cozy Games",
+      "Socio-Technical Systems",
+      "Chaotic Puppy Energy",
+      "Data & Power",
+      "Karaoke Nights",
+      "Constructivism",
+      "Never-Ending Crochet",
+      "Knowledge Creation",
+      "90s Comfort Series",
+      "Situated Challenges",
+      "Passenger Princess Driving"
+    ]
+  },
+
+  "publications": {
+    "heading": "Latest outputs"
+  },
+
+  "news_section": {
+    "heading": "News",
+    "all_news": "All News →"
+  },
+
+  "two_truths": {
+    "heading": "Things I may or may not have done",
+    "description_1": "Three statements about me.",
+    "description_2": "Two are true, one is not.",
+    "description_3": "You can decide which is which.",
+    "reveal_hint": "Click a card to reveal",
+    "cards": [
+      {
+        "front": "A surprisingly large portion of my life has been spent surrounded by sea.",
+        "hover": "this was not part of the plan",
+        "verdict": "TRUE",
+        "back": "I have lived both in the UK and on Gotland, which unintentionally adds up to a significant part of my life spent on islands."
+      },
+      {
+        "front": "Medical professionals would likely question some of my household decisions.",
+        "hover": "I stand by them",
+        "verdict": "TRUE",
+        "back": "I am allergic to cats, but I live with them anyway."
+      },
+      {
+        "front": "My research has reached dome-theatre proportions.",
+        "hover": "some ideas deserve a larger stage",
+        "verdict": "FALSE",
+        "back": "I have not presented my research in a planetarium — though it does sound like something I would gladly do."
+      }
+    ]
+  },
+
+  "about": {
+    "heading": "About Me",
+    "contact_button": "Get in Touch",
+    "bio_1": "I'm a PhD researcher in Data Visualisation at Linköping University, working at the intersection of interactive data visualization, feminist theory, and game studies. Originally from Ukraine, I'm now based in Norrköping, Sweden.",
+    "bio_2": "At the heart of my work is a curiosity about epistemology — about how knowledge is made, and who gets to make it. I like to challenge the idea that science and data can simply speak for themselves as neutral, objective truths. Every outcome of science reflects choices about what to show, how to show it, and whose perspective gets centered. Design, in this sense, is always a statement — and I'm interested in making that statement conscious.",
+    "bio_3": "Much of my current work unfolds in and around science museums, where complex, contested ideas meet wider publics. I'm curious about the choices embedded in those encounters — and what it might mean to make them differently.",
+    "bio_4": "Outside of research, I spend my time with my wife, our two cats, and our dog. I love video games, crocheting, Lego, and board games.",
+    "card_supervisor": "Supervisor",
+    "card_lab": "Lab",
+    "card_university": "University",
+    "cv_heading": "CV",
+    "cv_download": "Download CV ↓",
+    "research_interests_heading": "Research Interests",
+    "research_interests": [
+      "Feminist epistemologies and their application to design research and human-centered systems",
+      "Critical data visualization as a method for surfacing issues of authorship, credit, and recognition in collaborative environments such as science museums",
+      "Ethics of visibility and labor, especially around how contributions are acknowledged or overlooked in public-facing technologies and institutions",
+      "Participatory and playful design methods, with a focus on inclusive practices and creative engagement with complex ethical topics",
+      "Procedural critique and representation in games, including how simulation and interaction encode values and social assumptions"
+    ],
+    "education_heading": "Education",
+    "education": [
+      {
+        "title": "PhD in Media and Technology",
+        "university": "Linköping University",
+        "place": "August 2024 – present · Norrköping, Sweden",
+        "description": "PhD research explores critical data visualization through the lens of feminist epistemologies, examining how knowledge, labor, and recognition are represented and negotiated in collaborative public-facing projects. The work is situated at the intersection of design research, social justice, and responsible computing."
+      },
+      {
+        "title": "MA in Game Design",
+        "university": "Uppsala University – Campus Gotland",
+        "place": "September 2021 – June 2023 · Visby, Sweden",
+        "description": "The thesis focused on how game mechanics can reflect and reproduce social values through procedural systems, offering feminist frameworks for game analysis and design."
+      },
+      {
+        "title": "BA in Advertising",
+        "university": "University of the Arts London – LCC",
+        "place": "September 2013 – June 2016 · London, United Kingdom",
+        "description": "Studied advertising strategy, creative direction, and visual storytelling within interdisciplinary teams and international contexts."
+      }
+    ],
+    "teaching_heading": "Teaching & Supervision",
+    "teaching": [
+      {
+        "title": "Supervisor – Bachelor's Thesis in Graphic Design and Communication",
+        "company": "Linköping University",
+        "year": "March 2025 – June 2025 · Norrköping, Sweden",
+        "description": "Supervising a 16-credit thesis in Graphic Design and Communication, focusing on research framing, literature review, methodology, and ethical reflection."
+      },
+      {
+        "title": "Co-Supervisor – Bachelor's Degree Project in Game Design and Graphics",
+        "company": "Uppsala University",
+        "year": "January 2024 – June 2024 · Visby, Sweden",
+        "description": "Supported students in academic writing, critical reflection, and structuring research questions in alignment with social and ethical concerns."
+      }
+    ],
+    "projects_heading": "Academic & Design Projects",
+    "projects": [
+      {
+        "title": "Visualisation Center Credit Project",
+        "role": "Lead PhD Researcher",
+        "year": "January 2024 – present · Norrköping, Sweden",
+        "description": "Developing interactive data visualizations and participatory tools to represent contributions and credit in exhibition production. The project investigates how labor and authorship are distributed and recognized in interdisciplinary teams, with a focus on transparency, collaboration, and visitor engagement."
+      },
+      {
+        "title": "GECO – Gamify Energy Communities",
+        "role": "Researcher",
+        "year": "October 2023 – present · Gotland, Sweden",
+        "description": "Developing gamified facilitation tools to support inclusive and sustainable group dynamics in rural energy communities through design-driven research."
+      },
+      {
+        "title": "Erasmus+ ROCKET & EDGE Projects",
+        "role": "Graphic Designer",
+        "year": "February 2023 – present · Sweden / Germany / The Netherlands",
+        "description": "Designing visual materials and user interfaces for international education projects focused on role-playing games, inclusion, and interdisciplinary collaboration in higher education."
+      }
+    ],
+    "skills_heading": "Skills",
+    "skills": [
+      {
+        "label": "Qualitative research",
+        "desc": "Designing interview protocols, conducting interviews, and analyzing responses through thematic and critical approaches"
+      },
+      {
+        "label": "Academic writing",
+        "desc": "Structuring theses and research papers, conducting literature reviews, and formulating arguments with clarity"
+      },
+      {
+        "label": "Workshop facilitation",
+        "desc": "Designing and leading participatory activities focused on ethics, recognition, and collaboration in interdisciplinary contexts"
+      },
+      {
+        "label": "Research-through-design",
+        "desc": "Applying speculative, feminist, and participatory design methods in academic and collaborative projects"
+      },
+      {
+        "label": "Visual communication",
+        "desc": "Graphic design, branding, layout, and visual storytelling for both academic and public-facing audiences"
+      },
+      {
+        "label": "Basic web development",
+        "desc": "Knowledge of HTML, CSS, and JavaScript for prototyping interactive research tools and digital storytelling"
+      },
+      {
+        "label": "Interdisciplinary collaboration",
+        "desc": "Experience working across design, education, and science institutions in both research and applied settings"
+      },
+      {
+        "label": "Project planning & coordination",
+        "desc": "Managing timelines, documentation, and team communication in both academic and creative environments"
+      }
+    ],
+    "languages_heading": "Languages",
+    "languages": [
+      { "lang": "Ukrainian", "level": "Native proficiency" },
+      { "lang": "English", "level": "Full professional proficiency" },
+      { "lang": "Swedish", "level": "Intermediate proficiency" }
+    ]
+  },
+
+  "news_page": {
+    "heading": "News"
+  },
+
+  "outputs_page": {
+    "heading": "Outputs",
+    "filter_all": "All",
+    "filter_paper": "Paper",
+    "filter_thesis": "Thesis",
+    "filter_poster": "Poster"
+  },
+
+  "projects_page": {
+    "heading": "Projects",
+    "coming_soon_label": "Coming soon",
+    "coming_soon_text": "This page is still being put together. Check back soon."
+  },
+
+  "guestbook_page": {
+    "contact_heading": "Get in Touch",
+    "role": "PhD Student | Media and Technology",
+    "affiliation": "Linköping University | Norrköping, Sweden",
+    "guestbook_heading": "Guestbook",
+    "guestbook_intro": "Feel free to sign my digital guestbook — say hi, leave a thought, or just let me know you stopped by.",
+    "form_name": "Your name",
+    "form_link": "Link (optional)",
+    "form_country": "Select country",
+    "form_message": "Leave a message...",
+    "form_submit": "Sign guestbook"
+  },
+
+  "not_found": {
+    "label": "Error 404",
+    "heading": "Page not found",
+    "text": "This page doesn't exist — or maybe it used to and is now on fire.",
+    "back": "← Back to Home"
+  }
+}

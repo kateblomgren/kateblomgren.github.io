@@ -18,15 +18,15 @@ import { author } from '../sample'
               <span class="transition-opacity duration-200 group-hover:opacity-0">Kate Blomgren</span>
               <span class="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">Caterina Blomgren</span>
             </h1>
-            <h2 class="text-3xl font-medium">
+            <h2 class="text-3xl font-medium" data-i18n-html="hero.h2_html">
               <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/girl-at-laptop.png', this)">PhD student</span><span> asking </span><span class="relative inline-block">
                 <span class="absolute bg-[#FFDC58] w-full h-[45%] left-0 bottom-0 z-1"></span>
                 <span class="relative z-5">uncomfortable</span>
               </span><span> questions</span>
             </h2>
-            <p class="text-xl">I'm a PhD student at Linköping University, Campus Norrköping, focusing on the sociotechnical dimensions of HCI, the entanglement of systems and power, and using <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/girl-on-fire.png', this)">critical reflections</span> to examine how technical systems affect people.</p>
+            <p class="text-xl" data-i18n-html="hero.intro_html">I'm a PhD student at Linköping University, Campus Norrköping, focusing on the sociotechnical dimensions of HCI, the entanglement of systems and power, and using <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/girl-on-fire.png', this)">critical reflections</span> to examine how technical systems affect people.</p>
            <div class="flex mt-5">
-             <Button text="My Research Outputs" link="/outputs" />
+             <Button text="My Research Outputs" link="/outputs" i18nKey="hero.cta" />
            </div>
         </div>
         <div class="relative mt-40 md:mt-0">
@@ -54,15 +54,15 @@ import { author } from '../sample'
               <div class="pointer-events-none absolute -top-2 -left-2 -right-2 opacity-0 group-hover/photo:opacity-100 transition-opacity duration-200 z-20 bg-white border-2 border-black p-4 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
                 <p class="font-bold text-sm mb-2">Kate Blomgren</p>
                 <ul class="text-xs space-y-0.5 text-gray-700 leading-snug">
-                  <li>Critical Researcher,</li>
-                  <li>Mother of Cats,</li>
-                  <li>Disturber of Systems,</li>
-                  <li>Accidental Island Dweller,</li>
-                  <li>Reader of Footnotes and Between the Lines,</li>
-                  <li>Crocheter of Things That Probably Don't Need Crocheting,</li>
-                  <li>Translator of Technical Things into Human Problems,</li>
-                  <li>Occasional Saver of Zelda,</li>
-                  <li>and Personally Appointed Chauffeur of the Passenger Princess</li>
+                  <li data-i18n="hero.tooltip.lines.0">Critical Researcher,</li>
+                  <li data-i18n="hero.tooltip.lines.1">Mother of Cats,</li>
+                  <li data-i18n="hero.tooltip.lines.2">Disturber of Systems,</li>
+                  <li data-i18n="hero.tooltip.lines.3">Accidental Island Dweller,</li>
+                  <li data-i18n="hero.tooltip.lines.4">Reader of Footnotes and Between the Lines,</li>
+                  <li data-i18n="hero.tooltip.lines.5">Crocheter of Things That Probably Don't Need Crocheting,</li>
+                  <li data-i18n="hero.tooltip.lines.6">Translator of Technical Things into Human Problems,</li>
+                  <li data-i18n="hero.tooltip.lines.7">Occasional Saver of Zelda,</li>
+                  <li data-i18n="hero.tooltip.lines.8">and Personally Appointed Chauffeur of the Passenger Princess</li>
                 </ul>
               </div>
             </div>

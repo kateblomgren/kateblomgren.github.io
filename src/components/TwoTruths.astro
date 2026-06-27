@@ -31,11 +31,11 @@ const cards = [
   <div class="max-w-3xl mx-auto">
 
     <div class="mb-12">
-      <h2 class="text-3xl font-bold mb-3">Things I may or may not have done</h2>
+      <h2 class="text-3xl font-bold mb-3" data-i18n="two_truths.heading">Things I may or may not have done</h2>
       <p class="text-gray-600 leading-relaxed">
-        Three statements about me.<br />
-        Two are true, one is not.<br />
-        You can decide which is which.
+        <span data-i18n="two_truths.description_1">Three statements about me.</span><br />
+        <span data-i18n="two_truths.description_2">Two are true, one is not.</span><br />
+        <span data-i18n="two_truths.description_3">You can decide which is which.</span>
       </p>
     </div>
 
@@ -60,24 +60,24 @@ const cards = [
 
               <!-- hover note -->
               <p class="hover-note absolute bottom-4 right-4 text-[10px] text-gray-400 italic leading-tight text-right max-w-[80px]">
-                ({card.hover})
+                (<span data-i18n={`two_truths.cards.${i}.hover`}>{card.hover}</span>)
               </p>
 
-              <p class="mt-4 text-sm leading-relaxed">{card.front}</p>
+              <p class="mt-4 text-sm leading-relaxed" data-i18n={`two_truths.cards.${i}.front`}>{card.front}</p>
             </div>
 
             <!-- BACK -->
             <div class={`card-face card-back border-2 border-black p-5 shadow-[3px_3px_0px_rgba(0,0,0,0.15)] ${card.isTrue ? 'bg-[#AEF5D4]' : 'bg-[#FEA7CC]'}`}>
               <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-5 bg-[#FFDC58] border border-yellow-400 opacity-80"></div>
-              <p class="font-black text-2xl mb-3 tracking-tight">{card.verdict}</p>
-              <p class="text-sm leading-relaxed">{card.back}</p>
+              <p class="font-black text-2xl mb-3 tracking-tight" data-i18n={`two_truths.cards.${i}.verdict`}>{card.verdict}</p>
+              <p class="text-sm leading-relaxed" data-i18n={`two_truths.cards.${i}.back`}>{card.back}</p>
             </div>
           </div>
         </div>
       ))}
     </div>
 
-    <p class="text-xs text-gray-400 text-center mt-10">Click a card to reveal</p>
+    <p class="text-xs text-gray-400 text-center mt-10" data-i18n="two_truths.reveal_hint">Click a card to reveal</p>
 
   </div>
 </section>

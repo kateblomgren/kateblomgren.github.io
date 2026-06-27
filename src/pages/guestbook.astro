@@ -53,12 +53,12 @@ const entries = await db.select().from(Guestbook).all();
 
   <!-- LEFT: Contact info -->
   <div class="w-full md:w-1/2 py-10">
-    <h1 class="text-4xl mb-8 font-bold">Get in Touch</h1>
+    <h1 class="text-4xl mb-8 font-bold" data-i18n="guestbook_page.contact_heading">Get in Touch</h1>
     <div class="space-y-4">
       <div>
         <p class="text-2xl font-bold">Kate Blomgren</p>
-        <p class="text-gray-600 mt-1">PhD Student | Media and Technology</p>
-        <p class="text-gray-600">Linköping University | Norrköping, Sweden</p>
+        <p class="text-gray-600 mt-1" data-i18n="guestbook_page.role">PhD Student | Media and Technology</p>
+        <p class="text-gray-600" data-i18n="guestbook_page.affiliation">Linköping University | Norrköping, Sweden</p>
       </div>
       <div class="pt-2 space-y-3">
         <a href="mailto:kate.blomgren@liu.se" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
@@ -83,18 +83,18 @@ const entries = await db.select().from(Guestbook).all();
 
   <!-- RIGHT: Guestbook form -->
   <div class="w-full md:w-1/2 py-10">
-    <h1 class="text-4xl mb-3 font-bold">Guestbook</h1>
-    <p class="text-gray-600 mb-6">Feel free to sign my digital guestbook — say hi, leave a thought, or just let me know you stopped by.</p>
+    <h1 class="text-4xl mb-3 font-bold" data-i18n="guestbook_page.guestbook_heading">Guestbook</h1>
+    <p class="text-gray-600 mb-6" data-i18n="guestbook_page.guestbook_intro">Feel free to sign my digital guestbook — say hi, leave a thought, or just let me know you stopped by.</p>
 
     <!-- FORM -->
     <form method="POST" class="flex flex-col gap-4 border-2 border-black p-6 bg-white">
 
-      <input name="name" placeholder="Your name" required class="border p-2" />
+      <input name="name" data-i18n-placeholder="guestbook_page.form_name" placeholder="Your name" required class="border p-2" />
 
-      <input name="link" placeholder="Link (optional)" class="border p-2" />
+      <input name="link" data-i18n-placeholder="guestbook_page.form_link" placeholder="Link (optional)" class="border p-2" />
 
       <select name="country" required class="border p-2">
-        <option value="">Select country</option>
+        <option value="" data-i18n="guestbook_page.form_country">Select country</option>
         <option>Afghanistan</option>
         <option>Albania</option>
         <option>Algeria</option>
@@ -293,13 +293,14 @@ const entries = await db.select().from(Guestbook).all();
 
       <textarea
         name="message"
+        data-i18n-placeholder="guestbook_page.form_message"
         placeholder="Leave a message..."
         required
         maxlength="150"
         class="border p-2"
       ></textarea>
 
-      <button type="submit" class="border-2 border-black p-2 bg-yellow-200">
+      <button type="submit" class="border-2 border-black p-2 bg-yellow-200" data-i18n="guestbook_page.form_submit">
         Sign guestbook
       </button>
 

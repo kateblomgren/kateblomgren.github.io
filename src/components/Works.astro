@@ -10,7 +10,7 @@ const allPosts = (Object.values(import.meta.glob('../pages/posts/*.md', { eager:
 
 <section class="py-12 space-y-10 px-5" id="work">
     <div class="max-w-md mx-auto relative">
-      <h1 class="text-4xl font-medium text-center">News</h1>
+      <h1 class="text-4xl font-medium text-center" data-i18n="news_section.heading">News</h1>
       <img src={svgUnderline.src} alt="underline" width="140" class="absolute left-1/2 -translate-x-1/2 -bottom-1" />
     </div>
 
@@ -34,7 +34,7 @@ const allPosts = (Object.values(import.meta.glob('../pages/posts/*.md', { eager:
 
     <div class="text-center">
       <a href="/news/" class="inline-block px-6 py-2 border-2 border-black font-medium transition-all duration-200 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)]">
-        All News →
+        <span data-i18n="news_section.all_news">All News →</span>
       </a>
     </div>
 </section>

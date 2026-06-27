@@ -1,5 +1,6 @@
 ---
-
+import en from '../i18n/en.json'
+import uk from '../i18n/uk.json'
 ---
 
 <!doctype html>
@@ -15,6 +16,46 @@
 		<slot />
 	</body>
 </html>
+
+<script is:inline define:vars={{ translations: { en, uk } }}>
+  function getVal(obj, key) {
+    return key.split('.').reduce(function(o, k) { return o != null ? o[k] : undefined; }, obj);
+  }
+
+  function applyLang(lang) {
+    var t = translations[lang] || translations.en;
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var val = getVal(t, el.getAttribute('data-i18n'));
+      if (typeof val === 'string') el.textContent = val;
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var val = getVal(t, el.getAttribute('data-i18n-html'));
+      if (typeof val === 'string') el.innerHTML = val;
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      var val = getVal(t, el.getAttribute('data-i18n-placeholder'));
+      if (typeof val === 'string') el.placeholder = val;
+    });
+
+    document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+      btn.setAttribute('data-active', btn.getAttribute('data-lang-btn') === lang ? 'true' : 'false');
+    });
+
+    document.documentElement.lang = lang === 'uk' ? 'uk' : 'en';
+  }
+
+  window.setLang = function(lang) {
+    localStorage.setItem('site-lang', lang);
+    applyLang(lang);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    applyLang(localStorage.getItem('site-lang') || 'en');
+  });
+</script>
 
 <style>
 
@@ -41,5 +82,18 @@ body {
 	scroll-behavior: smooth;
 }
 
+[data-lang-btn] {
+  opacity: 0.45;
+  transition: opacity 0.15s;
+}
+[data-lang-btn][data-active="true"] {
+  opacity: 1;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+[data-lang-btn]:hover {
+  opacity: 1;
+}
 
 </style>

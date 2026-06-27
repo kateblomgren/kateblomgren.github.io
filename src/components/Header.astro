@@ -2,11 +2,11 @@
 import { author } from '../sample'
 
 const links = [
-    { name: 'About Me', path: '/about/', target: '_self', color: '#33BFFF' },
-    { name: 'Outputs', path: '/outputs/', target: '_self', color: '#CCA0FF' },
-    { name: 'Projects', path: '/projects/', target: '_self', color: '#AEF5D4' },
-    { name: 'News', path: '/news/', target: '_self', color: '#FFDA34' },
-    { name: 'Get in Touch', path: '/guestbook/', target: '_self', color: '#FF544F' },
+    { name: 'About Me',     i18n: 'nav.about',   path: '/about/',     target: '_self', color: '#33BFFF' },
+    { name: 'Outputs',      i18n: 'nav.outputs',  path: '/outputs/',   target: '_self', color: '#CCA0FF' },
+    { name: 'Projects',     i18n: 'nav.projects', path: '/projects/',  target: '_self', color: '#AEF5D4' },
+    { name: 'News',         i18n: 'nav.news',     path: '/news/',      target: '_self', color: '#FFDA34' },
+    { name: 'Get in Touch', i18n: 'nav.contact',  path: '/guestbook/', target: '_self', color: '#FF544F' },
 ]
 
 const { pathname } = Astro.url
@@ -43,7 +43,7 @@ const currentSectionColor =
         <!-- bottom boxes -->
         <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2"></div>
         <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2"></div>
-    
+
         <nav class="flex w-full items-center p-2 md:p-0">
             <div class="flex-1 font-bold">
                 <a href="/" class="flex items-center gap-2 pl-3">
@@ -54,13 +54,19 @@ const currentSectionColor =
                 <i class="ri-menu-2-line text-2xl"></i>
             </a>
             <ul class="hidden md:flex">
-                {links.map(item => ( 
+                {links.map(item => (
                     <li class="border-l-2 border-black p-3 py-4">
                         <a style={`--item-accent: ${item.color}`} href={item.path} target={item.target} class="whitespace-nowrap relative flex items-center before:absolute before:left-0 before:bottom-1 before:h-[8px] before:w-0 before:bg-[var(--item-accent)] before:transition-all before:duration-300 hover:before:w-full">
-                            <span class="relative z-5">{item.name} {normalizedPath === item.path.replace(/\/$/, '') ? '//' : ''}</span>
+                            <span class="relative z-5"><span data-i18n={item.i18n}>{item.name}</span>{normalizedPath === item.path.replace(/\/$/, '') ? ' //' : ''}</span>
                         </a>
                     </li>
                 ))}
+                <!-- Language switcher -->
+                <li class="border-l-2 border-black px-3 py-4 flex items-center gap-1.5">
+                    <button data-lang-btn="en" onclick="setLang('en')" class="text-sm cursor-pointer">ENG</button>
+                    <span class="text-gray-300 select-none">|</span>
+                    <button data-lang-btn="uk" onclick="setLang('uk')" class="text-sm cursor-pointer">УКР</button>
+                </li>
             </ul>
         </nav>
     </div>
@@ -70,28 +76,34 @@ const currentSectionColor =
 
   <div class="block md:hidden fixed left-0 top-0 h-full w-full bg-white z-20 p-3 transition-all duration-300 -translate-x-[100%]" id="menu-content">
     <div class="flex p-6">
-        <h3 class="flex-1 font-bold uppercase">Menu</h3>
-        <a href="#" id="menu-close">               
+        <h3 class="flex-1 font-bold uppercase" data-i18n="nav.menu">Menu</h3>
+        <a href="#" id="menu-close">
            <i class="ri-close-line text-3xl"></i>
         </a>
     </div>
     <ul class="flex flex-col justify-center items-center gap-4 md:hidden">
-        {links.map(item => ( 
+        {links.map(item => (
             <li class="py-3">
                 <a style={`--item-accent: ${item.color}`} href={item.path} target={item.target} class="p-3 whitespace-nowrap text-2xl font-bold transition-colors duration-200 hover:text-[var(--item-accent)]">
-                    {item.name} {normalizedPath === item.path.replace(/\/$/, '') ? '//' : ''}
+                    <span data-i18n={item.i18n}>{item.name}</span>{normalizedPath === item.path.replace(/\/$/, '') ? ' //' : ''}
                 </a>
             </li>
         ))}
+        <!-- Language switcher (mobile) -->
+        <li class="py-2 flex items-center gap-3">
+            <button data-lang-btn="en" onclick="setLang('en'); document.getElementById('menu-content').classList.add('-translate-x-[100%]')" class="text-lg font-bold cursor-pointer">ENG</button>
+            <span class="text-gray-300 select-none">|</span>
+            <button data-lang-btn="uk" onclick="setLang('uk'); document.getElementById('menu-content').classList.add('-translate-x-[100%]')" class="text-lg font-bold cursor-pointer">УКР</button>
+        </li>
     </ul>
   </div>
 
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const menuContent = document.querySelector('#menu-content') 
-    const menuOpen = document.querySelector('#menu-open') 
-    const menuClose = document.querySelector('#menu-close') 
+    const menuContent = document.querySelector('#menu-content')
+    const menuOpen = document.querySelector('#menu-open')
+    const menuClose = document.querySelector('#menu-close')
 
 
     menuOpen?.addEventListener('click', (e) => {

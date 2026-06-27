@@ -8,6 +8,12 @@ const allOutputs = (Object.values(import.meta.glob('./outputs/*.md', { eager: tr
   .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'))
   .sort((a: any, b: any) => new Date(b.frontmatter?.pubDate ?? 0).getTime() - new Date(a.frontmatter?.pubDate ?? 0).getTime());
 const types = ['all', 'paper', 'thesis', 'poster'];
+const filterI18nKeys: Record<string, string> = {
+  all: 'outputs_page.filter_all',
+  paper: 'outputs_page.filter_paper',
+  thesis: 'outputs_page.filter_thesis',
+  poster: 'outputs_page.filter_poster',
+};
 ---
 
 <Layout>
@@ -17,7 +23,7 @@ const types = ['all', 'paper', 'thesis', 'poster'];
         <div class="max-w-3xl mx-auto px-4">
 
           <div class="text-center mt-6 mb-10">
-            <h1 class="text-5xl font-black">Outputs</h1>
+            <h1 class="text-5xl font-black" data-i18n="outputs_page.heading">Outputs</h1>
           </div>
 
           <!-- Filter buttons -->
@@ -25,6 +31,7 @@ const types = ['all', 'paper', 'thesis', 'poster'];
             {types.map(type => (
               <button
                 data-filter={type}
+                data-i18n={filterI18nKeys[type]}
                 class={`filter-btn px-4 py-1.5 border-2 border-black text-sm font-medium transition-all duration-150 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)] ${type === 'all' ? 'bg-[#ffda35]' : 'bg-white'}`}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}

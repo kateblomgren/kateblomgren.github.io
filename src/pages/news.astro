@@ -21,7 +21,7 @@ const allPosts = (Object.values(import.meta.glob('./posts/*.md', { eager: true }
     <section class="pt-16 pb-32">
         <div class="max-w-3xl mx-auto">
           <div class="text-center mt-6 mb-12">
-            <h1 class="title text-5xl font-black">News</h1>
+            <h1 class="title text-5xl font-black" data-i18n="news_page.heading">News</h1>
           </div>
           <div class="p-3">
             {allPosts.map(({url, frontmatter, rawContent }: any) => 

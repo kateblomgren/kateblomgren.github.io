@@ -94,7 +94,7 @@ const languages = [
 
     <Header />
 
-    <a href="/guestbook/" class="absolute right-0 top-0 m-4 px-3 py-1 bg-yellow-300 border-2 border-black rounded z-20">Get in Touch</a>
+    <a href="/guestbook/" class="absolute right-0 top-0 m-4 px-3 py-1 bg-yellow-300 border-2 border-black rounded z-20" data-i18n="about.contact_button">Get in Touch</a>
 
     <div id="sticker-book" class="hidden md:block absolute right-0 top-0 w-64 h-[2000px] pointer-events-none"></div>
 
@@ -102,17 +102,17 @@ const languages = [
     <section class="max-w-3xl mx-auto py-16 px-6">
       <div class="flex flex-col md:flex-row gap-10 items-start">
         <div class="flex-1">
-          <h1 class="text-4xl font-medium mb-6">About Me</h1>
-          <p class="text-lg leading-relaxed">
+          <h1 class="text-4xl font-medium mb-6" data-i18n="about.heading">About Me</h1>
+          <p class="text-lg leading-relaxed" data-i18n-html="about.bio_1_html">
             I'm a PhD researcher in Data Visualisation at <a href="https://liu.se/en/research/visualization-and-interaction-design" class="font-bold underline" target="_blank">Linköping University</a>, working at the intersection of interactive data visualization, feminist theory, and game studies. Originally from <span class="underline cursor-pointer" onclick="addSticker('/stickers/uk-tri.png', this)">Ukraine</span>, I'm now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/norr-uni.png', this)">Norrköping, Sweden</span>.
           </p>
-          <p class="text-lg leading-relaxed mt-4">
+          <p class="text-lg leading-relaxed mt-4" data-i18n="about.bio_2">
             At the heart of my work is a curiosity about epistemology — about how knowledge is made, and who gets to make it. I like to challenge the idea that science and data can simply speak for themselves as neutral, objective truths. Every outcome of science reflects choices about what to show, how to show it, and whose perspective gets centered. Design, in this sense, is always a statement — and I'm interested in making that statement conscious.
           </p>
-          <p class="text-lg leading-relaxed mt-4">
+          <p class="text-lg leading-relaxed mt-4" data-i18n="about.bio_3">
             Much of my current work unfolds in and around science museums, where complex, contested ideas meet wider publics. I'm curious about the choices embedded in those encounters — and what it might mean to make them differently.
           </p>
-          <p class="text-lg leading-relaxed mt-4">
+          <p class="text-lg leading-relaxed mt-4" data-i18n-html="about.bio_4_html">
             Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/orange-cat-standing.png', this)">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/dog-in-box.png', this)">dog</span>. I love video games, crocheting, Lego, and board games.
           </p>
         </div>
@@ -122,7 +122,7 @@ const languages = [
           <!-- Supervisor card -->
           <a href="https://miriah.github.io/" target="_blank" class="block relative bg-[#CCA0FF] border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.35)]" style="transform: rotate(-1.5deg);">
             <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FFDC58] border border-yellow-400 opacity-80"></span>
-            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-1">Supervisor</p>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-1" data-i18n="about.card_supervisor">Supervisor</p>
             <p class="text-sm font-bold leading-snug">Miriah Meyer</p>
             <p class="text-xs text-gray-700 mt-0.5 flex items-center gap-1">miriah.github.io <i class="ri-external-link-line text-[10px]"></i></p>
           </a>
@@ -130,7 +130,7 @@ const languages = [
           <!-- Lab card -->
           <a href="https://visidlab.github.io/" target="_blank" class="block relative bg-[#AEF5D4] border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.35)]" style="transform: rotate(1deg);">
             <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FEA7CC] border border-pink-300 opacity-80"></span>
-            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-1">Lab</p>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-1" data-i18n="about.card_lab">Lab</p>
             <p class="text-sm font-bold leading-snug">Visualisation & Interaction Design Lab</p>
             <p class="text-xs text-gray-700 mt-0.5 flex items-center gap-1">visidlab.github.io <i class="ri-external-link-line text-[10px]"></i></p>
           </a>
@@ -138,7 +138,7 @@ const languages = [
           <!-- University card -->
           <a href="https://liu.se/en" target="_blank" class="block relative bg-white border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.35)]" style="transform: rotate(-1deg);">
             <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FFDC58] border border-yellow-400 opacity-80"></span>
-            <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1">University</p>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1" data-i18n="about.card_university">University</p>
             <p class="text-sm font-bold leading-snug">Linköping University</p>
             <p class="text-xs text-gray-500 mt-0.5 flex items-center gap-1">liu.se <i class="ri-external-link-line text-[10px]"></i></p>
           </a>
@@ -152,20 +152,20 @@ const languages = [
     <!-- CV -->
     <section class="max-w-3xl mx-auto py-16 px-6" id="cv-section">
       <div class="flex items-center justify-between mb-10">
-        <h2 class="text-3xl font-bold">CV</h2>
+        <h2 class="text-3xl font-bold" data-i18n="about.cv_heading">CV</h2>
         <a href="/BlomgrenCV.pdf" download class="px-4 py-2 border-2 border-black bg-white font-medium text-sm transition-all duration-200 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)]">
-          Download CV ↓
+          <span data-i18n="about.cv_download">Download CV ↓</span>
         </a>
       </div>
 
       <!-- Research Interests -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Research Interests</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.research_interests_heading">Research Interests</h3>
         <ul class="space-y-2">
-          {researchInterests.map(item => (
+          {researchInterests.map((item, i) => (
             <li class="flex gap-3">
               <span class="text-gray-400 mt-1">❖</span>
-              <span>{item}</span>
+              <span data-i18n={`about.research_interests.${i}`}>{item}</span>
             </li>
           ))}
         </ul>
@@ -173,14 +173,14 @@ const languages = [
 
       <!-- Education -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Education</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.education_heading">Education</h3>
         <div class="space-y-8">
-          {education.map(item => (
+          {education.map((item, i) => (
             <div>
-              <p class="font-bold">{item.title}</p>
-              <p class="text-gray-600">{item.university}</p>
-              <p class="text-sm text-gray-400 mb-2">{item.place}</p>
-              <p class="text-sm leading-relaxed">{item.description}</p>
+              <p class="font-bold" data-i18n={`about.education.${i}.title`}>{item.title}</p>
+              <p class="text-gray-600" data-i18n={`about.education.${i}.university`}>{item.university}</p>
+              <p class="text-sm text-gray-400 mb-2" data-i18n={`about.education.${i}.place`}>{item.place}</p>
+              <p class="text-sm leading-relaxed" data-i18n={`about.education.${i}.description`}>{item.description}</p>
             </div>
           ))}
         </div>
@@ -188,14 +188,14 @@ const languages = [
 
       <!-- Teaching & Supervision -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Teaching & Supervision</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.teaching_heading">Teaching & Supervision</h3>
         <div class="space-y-8">
-          {teaching.map(item => (
+          {teaching.map((item, i) => (
             <div>
-              <p class="font-bold">{item.title}</p>
-              <p class="text-gray-600">{item.company}</p>
-              <p class="text-sm text-gray-400 mb-2">{item.year}</p>
-              <p class="text-sm leading-relaxed">{item.description}</p>
+              <p class="font-bold" data-i18n={`about.teaching.${i}.title`}>{item.title}</p>
+              <p class="text-gray-600" data-i18n={`about.teaching.${i}.company`}>{item.company}</p>
+              <p class="text-sm text-gray-400 mb-2" data-i18n={`about.teaching.${i}.year`}>{item.year}</p>
+              <p class="text-sm leading-relaxed" data-i18n={`about.teaching.${i}.description`}>{item.description}</p>
             </div>
           ))}
         </div>
@@ -203,13 +203,16 @@ const languages = [
 
       <!-- Academic & Design Projects -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Academic & Design Projects</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.projects_heading">Academic & Design Projects</h3>
         <div class="space-y-8">
-          {projects.map(item => (
+          {projects.map((item, i) => (
             <div>
-              <p class="font-bold">{item.title} <span class="font-normal text-gray-600">/ {item.role}</span></p>
-              <p class="text-sm text-gray-400 mb-2">{item.year}</p>
-              <p class="text-sm leading-relaxed">{item.description}</p>
+              <p class="font-bold">
+                <span data-i18n={`about.projects.${i}.title`}>{item.title}</span>
+                <span class="font-normal text-gray-600"> / <span data-i18n={`about.projects.${i}.role`}>{item.role}</span></span>
+              </p>
+              <p class="text-sm text-gray-400 mb-2" data-i18n={`about.projects.${i}.year`}>{item.year}</p>
+              <p class="text-sm leading-relaxed" data-i18n={`about.projects.${i}.description`}>{item.description}</p>
             </div>
           ))}
         </div>
@@ -217,12 +220,12 @@ const languages = [
 
       <!-- Skills -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Skills</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.skills_heading">Skills</h3>
         <ul class="space-y-2">
-          {skills.map(item => (
+          {skills.map((item, i) => (
             <li class="flex gap-3">
               <span class="text-gray-400 mt-1">❖</span>
-              <span><span class="font-bold">{item.label}:</span> {item.desc}</span>
+              <span><span class="font-bold" data-i18n={`about.skills.${i}.label`}>{item.label}:</span> <span data-i18n={`about.skills.${i}.desc`}>{item.desc}</span></span>
             </li>
           ))}
         </ul>
@@ -230,12 +233,12 @@ const languages = [
 
       <!-- Languages -->
       <div class="mb-12">
-        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6">Languages</h3>
+        <h3 class="text-xl font-bold border-b-2 border-black pb-2 mb-6" data-i18n="about.languages_heading">Languages</h3>
         <ul class="space-y-2">
-          {languages.map(item => (
+          {languages.map((item, i) => (
             <li class="flex gap-3">
               <span class="text-gray-400 mt-1">❖</span>
-              <span><span class="font-bold">{item.lang}</span> — {item.level}</span>
+              <span><span class="font-bold" data-i18n={`about.languages.${i}.lang`}>{item.lang}</span> — <span data-i18n={`about.languages.${i}.level`}>{item.level}</span></span>
             </li>
           ))}
         </ul>
@@ -261,23 +264,18 @@ const languages = [
 
 <script is:inline>
   window.addSticker = function (image, triggerEl) {
-    // No stickers on mobile
     if (window.innerWidth < 768) return;
 
     const container = document.getElementById('sticker-book');
     if (!container) return;
     if (document.querySelector(`[data-sticker="${image}"]`)) return;
 
-    // Work out Y: align sticker with the clicked word.
-    // Both elRect.top and containerRect.top are viewport-relative,
-    // so their difference gives the correct container-space Y regardless of scroll.
     const containerRect = container.getBoundingClientRect();
-    let startY = 80; // fallback
+    let startY = 80;
     if (triggerEl) {
       const elRect = triggerEl.getBoundingClientRect();
       startY = elRect.top - containerRect.top - 30;
     }
-    // Small random horizontal jitter within the column width
     const startX = Math.floor(Math.random() * 80 + 10);
 
     const sticker = document.createElement('img');

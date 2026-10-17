@@ -3,12 +3,13 @@ layout: ../../components/MarkdownPost.astro
 title: "Speaker at Skövde Game Conference"
 image:
   url: "/news-pics/skovde-conf/photo_2026-04-16_18-56-34.jpg"
-  alt: "Presentation at Skövde Game Conference"
+  alt: "Kate on stage with a headset microphone, in front of a screen reading “Interactive Feminism: Exploring Game Mechanics”."
+  caption: "On stage in Skövde"
 tags: ["conference", "games", "talk"]
 pubDate: 'October 4, 2024'
 ---
 
-I was excited to present my work at the Skövde Game Conference, together with together with breathtaking [Josephine Baird](https://josephinebaird.com/).
+I was excited to present my work at the Skövde Game Conference, together with the breathtaking [Josephine Baird](https://josephinebaird.com/).
 
 The talk focused on feminist game mechanics and how systems can carry meaning beyond representation.
 

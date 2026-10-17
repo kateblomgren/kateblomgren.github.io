@@ -52,12 +52,12 @@ const entries = await db.select().from(Guestbook).all();
 <div class="relative max-w-4xl mx-auto px-6 mt-10 flex flex-col md:flex-row gap-12">
 
   <!-- LEFT: Contact info -->
-  <div class="w-full md:w-1/2 py-10">
+  <div class="w-full md:w-1/2 paper p-6 md:p-8 md:my-10 self-start">
     <h1 class="text-4xl mb-8 font-bold" data-i18n="guestbook_page.contact_heading">Get in Touch</h1>
     <div class="space-y-4">
       <div>
         <p class="text-2xl font-bold">Kate Blomgren</p>
-        <p class="text-gray-600 mt-1" data-i18n="guestbook_page.role">PhD Student | Media and Technology</p>
+        <p class="text-gray-600 mt-1" data-i18n="guestbook_page.role">PhD Researcher | Media and Technology</p>
         <p class="text-gray-600" data-i18n="guestbook_page.affiliation">Linköping University | Norrköping, Sweden</p>
       </div>
       <div class="pt-2 space-y-3">
@@ -65,7 +65,7 @@ const entries = await db.select().from(Guestbook).all();
           <i class="ri-mail-fill text-xl"></i>
           <span>kate.blomgren@liu.se</span>
         </a>
-        <a href="https://www.linkedin.com/feed/" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+        <a href="https://www.linkedin.com/in/kate-blomgren-b13801403/" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
           <i class="ri-linkedin-box-fill text-xl"></i>
           <span>LinkedIn</span>
         </a>
@@ -73,16 +73,20 @@ const entries = await db.select().from(Guestbook).all();
           <i class="ri-bluesky-fill text-xl"></i>
           <span>Bluesky</span>
         </a>
-        <a href="https://scholar.google.com/citations?hl=en&user=dQbMpv8AAAAJ&view_op=list_works&gmla=AEk_c1tFv1NV_fIyQiNrIa1xWjGq0-5bbt0VvULp4FJ9AjOZeJSJ9xooT6HuvNlfk3qPuXNqHCDUQLvIBBM3-qRxhwv5zH31IfPDwyBCvhsmIPMkjdhexjguWHh771P1Ank_1e6tIbL4JmTSDSODUqU&iaan=Caterina+Blomgren" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+        <a href="https://scholar.google.com/citations?user=dQbMpv8AAAAJ&hl=en" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
           <i class="ri-graduation-cap-fill text-xl"></i>
           <span>Google Scholar</span>
+        </a>
+        <a href="https://visidlab.github.io/" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity">
+          <i class="ri-flask-fill text-xl"></i>
+          <span>Visualisation & Interaction Design Lab</span>
         </a>
       </div>
     </div>
   </div>
 
   <!-- RIGHT: Guestbook form -->
-  <div class="w-full md:w-1/2 py-10">
+  <div class="w-full md:w-1/2 paper p-6 md:p-8 md:my-10 self-start">
     <h1 class="text-4xl mb-3 font-bold" data-i18n="guestbook_page.guestbook_heading">Guestbook</h1>
     <p class="text-gray-600 mb-6" data-i18n="guestbook_page.guestbook_intro">Feel free to sign my digital guestbook — say hi, leave a thought, or just let me know you stopped by.</p>
 
@@ -419,7 +423,7 @@ const entries = await db.select().from(Guestbook).all();
 
   // Pre-spawn the hand sticker near "Get in Touch" heading
   document.addEventListener('DOMContentLoaded', () => {
-    addSticker('/stickers/peace-hand.png', 40, 160);
+    addSticker('/stickers/places-things/peace-hand.png', 40, 160);
   });
 </script>
 

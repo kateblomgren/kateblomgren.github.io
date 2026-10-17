@@ -6,7 +6,8 @@ author:
   url: "/photo-kate.png"
 image:
   url: "/your-image.png"
-  alt: "Description of the image for accessibility"
+  alt: "Description of the image for accessibility"   # hidden, read by screen readers
+  caption: "Short note shown under the photo"          # optional, visible
 tags: ["tag1", "tag2", "tag3"]
 pubDate: 'Month DD, YYYY'
 ---

@@ -6,7 +6,8 @@ author:
   url: 
 image:
   url: "/news-pics/1777299023701.jpeg"
-  alt: "Group photo of WASP PhD students during a study trip in the north of the UK."
+  alt: "Group photo of WASP PhD students in front of a glass building with a gold lattice facade."
+  caption: "WASP study trip group photo"
 tags: ["WASP", "research", "PhD", "study trip"]
 pubDate: 'April 26, 2026'
 ---

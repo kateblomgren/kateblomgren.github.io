@@ -13,18 +13,18 @@ import { author } from '../sample'
 <section class="pb-20 relative">
     <div class="max-w-4xl mx-auto p-4 pt-16 md:pt-24">
       <div class="grid grid-cols-1 md:grid-cols-[60%_40%] items-center">
-        <div class="flex flex-col gap-4 pr-0 md:pr-10">
+        <div class="paper flex flex-col gap-4 p-6 md:p-8 md:mr-10">
             <h1 class="group relative inline-block text-5xl font-bold">
               <span class="transition-opacity duration-200 group-hover:opacity-0">Kate Blomgren</span>
               <span class="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">Caterina Blomgren</span>
             </h1>
             <h2 class="text-3xl font-medium" data-i18n-html="hero.h2_html">
-              <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/girl-at-laptop.png', this)">PhD student</span><span> asking </span><span class="relative inline-block">
+              <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/characters/girl-at-laptop.png', this)">PhD researcher</span><span> asking </span><span class="relative inline-block">
                 <span class="absolute bg-[#FFDC58] w-full h-[45%] left-0 bottom-0 z-1"></span>
                 <span class="relative z-5">uncomfortable</span>
               </span><span> questions</span>
             </h2>
-            <p class="text-xl" data-i18n-html="hero.intro_html">I'm a PhD student at Linköping University, Campus Norrköping, focusing on the sociotechnical dimensions of HCI, the entanglement of systems and power, and using <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/girl-on-fire.png', this)">critical reflections</span> to examine how technical systems affect people.</p>
+            <p class="text-xl" data-i18n-html="hero.intro_html">I'm a PhD researcher at Linköping University working in HCI and data visualization. My research looks at the <span class="underline decoration-dotted cursor-pointer" onclick="addSticker('/stickers/characters/girl-on-fire.png', this)">values, practices and people</span> behind technology, from science museum exhibits to AI.</p>
            <div class="flex mt-5">
              <Button text="My Research Outputs" link="/outputs" i18nKey="hero.cta" />
            </div>
@@ -48,7 +48,7 @@ import { author } from '../sample'
             <img src={svgString.src} width="50" alt="string" class="absolute -top-6 -right-2 z-10" />
 
             <div class="group/photo relative w-full h-[310px] border-2 bg-white flex items-center justify-center cursor-default">
-              <img src="/stickers/just-like-other-girls.png" alt="illustration" class="h-full w-full object-contain" />
+              <img src="/kate-b.jpg" alt="Kate Blomgren portrait" class="h-full w-full object-cover object-[50%_35%]" />
 
               <!-- Tooltip -->
               <div class="pointer-events-none absolute -top-2 -left-2 -right-2 opacity-0 group-hover/photo:opacity-100 transition-opacity duration-200 z-20 bg-white border-2 border-black p-4 shadow-[4px_4px_0px_rgba(0,0,0,1)]">

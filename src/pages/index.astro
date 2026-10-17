@@ -8,7 +8,7 @@ import Tools from '../components/Tools.astro'
 import Footer from '../components/Footer.astro'
 import Publications from '../components/Publications.astro'
 import Works from '../components/Works.astro'
-import TwoTruths from '../components/TwoTruths.astro'
+import SpinWheel from '../components/SpinWheel.astro'
 
 ---
 
@@ -23,7 +23,7 @@ import TwoTruths from '../components/TwoTruths.astro'
   <Tools />
   <Publications />
   <Works />
-  <TwoTruths />
+  <SpinWheel />
   <Footer />
 </Layout>
 
@@ -124,8 +124,8 @@ import TwoTruths from '../components/TwoTruths.astro'
     if (!container) return;
 
     const sticker = document.createElement('img');
-    sticker.src = '/stickers/girl-with-headphones.png';
-    sticker.setAttribute('data-sticker', '/stickers/girl-with-headphones.png');
+    sticker.src = '/stickers/characters/girl-with-headphones.png';
+    sticker.setAttribute('data-sticker', '/stickers/characters/girl-with-headphones.png');
     sticker.className = 'absolute cursor-grab pointer-events-auto select-none';
     sticker.style.width = '160px';
     sticker.style.willChange = 'transform';

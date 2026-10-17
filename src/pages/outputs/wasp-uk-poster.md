@@ -10,6 +10,10 @@ pdf: "/outputs/caterina-blomgren-ukposter.pdf"
 image: "/outputs/caterina-blomgren-ukposter.png"
 imageCaption: "Poster presented during the WASP Study Trip to the North of the UK."
 pubDate: "2026-04-26"
+related:
+  - label: "Zine: Who made this exhibit?"
+    url: "https://danielamoyano.github.io/crediting_zine/"
+    icon: "ri-book-open-line"
 keywords: "credit-giving, authorship, science museums, visualization, interactive digital exhibits"
 notes:
   - title: "Poster"

@@ -40,8 +40,8 @@ const { frontmatter } = Astro.props;
               alt={frontmatter.image.alt || ''}
               class="post-img w-full object-cover max-h-[420px] cursor-zoom-in"
             />
-            {frontmatter.image.alt && (
-              <p class="text-xs text-gray-500 px-3 py-2 border-t border-gray-100 italic">{frontmatter.image.alt}</p>
+            {frontmatter.image.caption && (
+              <p class="text-xs text-gray-500 px-3 py-2 border-t border-gray-100 italic">{frontmatter.image.caption}</p>
             )}
           </div>
         )}

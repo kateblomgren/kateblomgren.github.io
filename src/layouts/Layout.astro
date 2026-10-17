@@ -1,10 +1,10 @@
 ---
-import en from '../i18n/en.json'
 import uk from '../i18n/uk.json'
+import { sectionColor } from '../sectionColor'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style={`--section: ${sectionColor(Astro.url.pathname)}`}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -17,27 +17,34 @@ import uk from '../i18n/uk.json'
 	</body>
 </html>
 
-<script is:inline define:vars={{ translations: { en, uk } }}>
+<script is:inline define:vars={{ translations: { uk } }}>
+  // English lives in the page markup itself. Before the first swap, each element's
+  // original English is stashed in a data attribute (kept by cloneNode, e.g. the
+  // Tools marquee) so switching back to ENG — or a key missing from uk.json — restores it.
   function getVal(obj, key) {
     return key.split('.').reduce(function(o, k) { return o != null ? o[k] : undefined; }, obj);
   }
 
   function applyLang(lang) {
-    var t = translations[lang] || translations.en;
+    var t = translations[lang] || {};
 
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      if (!el.hasAttribute('data-i18n-en')) el.setAttribute('data-i18n-en', el.innerHTML);
       var val = getVal(t, el.getAttribute('data-i18n'));
       if (typeof val === 'string') el.textContent = val;
+      else el.innerHTML = el.getAttribute('data-i18n-en');
     });
 
     document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      if (!el.hasAttribute('data-i18n-en')) el.setAttribute('data-i18n-en', el.innerHTML);
       var val = getVal(t, el.getAttribute('data-i18n-html'));
-      if (typeof val === 'string') el.innerHTML = val;
+      el.innerHTML = typeof val === 'string' ? val : el.getAttribute('data-i18n-en');
     });
 
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      if (!el.hasAttribute('data-i18n-en-placeholder')) el.setAttribute('data-i18n-en-placeholder', el.placeholder);
       var val = getVal(t, el.getAttribute('data-i18n-placeholder'));
-      if (typeof val === 'string') el.placeholder = val;
+      el.placeholder = typeof val === 'string' ? val : el.getAttribute('data-i18n-en-placeholder');
     });
 
     document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {

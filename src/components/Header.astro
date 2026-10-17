@@ -1,5 +1,6 @@
 ---
 import { author } from '../sample'
+import { sectionColor } from '../sectionColor'
 
 const links = [
     { name: 'About Me',     i18n: 'nav.about',   path: '/about/',     target: '_self', color: '#33BFFF' },
@@ -9,24 +10,8 @@ const links = [
     { name: 'Get in Touch', i18n: 'nav.contact',  path: '/guestbook/', target: '_self', color: '#FF544F' },
 ]
 
-const { pathname } = Astro.url
-
-const sectionColors = [
-    { match: '/', color: '#FEA7CC' },
-    { match: '/outputs/', color: '#CCA0FF' },
-    { match: '/projects/', color: '#AEF5D4' },
-    { match: '/about/', color: '#33BFFF' },
-    { match: '/news/', color: '#FFDA34' },
-    { match: '/posts/', color: '#FFDA34' },
-    { match: '/guestbook/', color: '#FF544F' },
-    { match: '/collections/', color: '#AEE8FF' },
-]
-
-const normalizedPath = pathname.replace(/\/$/, '') || '/'
-const currentSectionColor =
-    sectionColors.find((section) =>
-        section.match === '/' ? normalizedPath === '/' : normalizedPath.startsWith(section.match.replace(/\/$/, ''))
-    )?.color ?? '#FEFFF0'
+const normalizedPath = Astro.url.pathname.replace(/\/$/, '') || '/'
+const currentSectionColor = sectionColor(Astro.url.pathname)
 ---
 
 <header style={`--header-accent: ${currentSectionColor}`} class="fixed top-0 left-0 w-full z-50 border-b-3 p-7 overflow-hidden bg-[var(--header-accent)]">

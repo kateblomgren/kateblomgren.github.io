@@ -80,7 +80,7 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
       <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-14 items-start">
 
         <!-- ── LEFT: main content ── -->
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 paper p-6 md:p-8">
 
           {image && (
             <div class="float-left mr-8 mb-4 max-w-[260px] w-full">
@@ -167,7 +167,17 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
             </a>
           )}
 
-          {(frontmatter.pdf || frontmatter.doi) && (
+          {frontmatter.link && (
+            <a
+              href={frontmatter.link}
+              target="_blank"
+              class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
+            >
+              <i class="ri-external-link-line text-lg"></i> View on lab website
+            </a>
+          )}
+
+          {(frontmatter.pdf || frontmatter.doi || frontmatter.link) && (
             <div class="border-t-2 border-dashed border-gray-300"></div>
           )}
 
@@ -221,6 +231,25 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
               );
             })}
           </div>
+
+          <!-- Related (optional) -->
+          {frontmatter.related?.length > 0 && (
+            <div
+              class="bg-[#AEF5D4] border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:rotate-0"
+              style="transform: rotate(1.2deg);"
+            >
+              <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FEA7CC] border border-pink-300 opacity-80"></span>
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-2">Related</p>
+              <div class="space-y-1.5">
+                {frontmatter.related.map((r: any) => (
+                  <a href={r.url} target="_blank" class="flex items-start gap-1.5 text-xs font-bold leading-snug hover:underline">
+                    <i class={`${r.icon ?? 'ri-external-link-line'} text-sm leading-none flex-shrink-0`}></i>
+                    <span>{r.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
           <!-- Venue -->
           <div

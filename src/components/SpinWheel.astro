@@ -1,0 +1,138 @@
+---
+// Doodle wheel (home page). Click the wheel or the button → it spins → a random
+// sticker pops into the card. Wheel layers live in /public/wheel/ and are placed
+// in % of the wheel's frame.
+import svgUnderline from '../assets/underline.svg'
+
+const layers: Record<string, { left: number; top: number; width: number }> = {
+  'line-1':  { left: 90.37, top: 47.46, width: 7.38 },
+  'line-2':  { left: 91.78, top: 53.81, width: 8.22 },
+  'line-3':  { left: 3.74,  top: 29.13, width: 6.45 },
+  'line-4':  { left: 0.56,  top: 36.39, width: 4.86 },
+  'spark-1': { left: 82.52, top: 6.44,  width: 8.79 },
+  'spark-2': { left: 85.79, top: 18.51, width: 10.19 },
+  'spark-3': { left: 11.68, top: 7.26,  width: 8.79 },
+  'stand':   { left: 0,     top: 76.41, width: 89.44 },
+  'wheel':   { left: 8.5,   top: 5.17,  width: 84.11 },
+  'pointer': { left: 42.34, top: 0,     width: 18.5 },
+}
+const pos = (n: string) => `left:${layers[n].left}%;top:${layers[n].top}%;width:${layers[n].width}%`
+
+// Stickers the wheel can give out (public/stickers/moods + characters)
+const stickers = [
+  'moods/annoyed', 'moods/careful', 'moods/celebration', 'moods/confident', 'moods/cozy-sleepy',
+  'moods/frightened', 'moods/happy-jump', 'moods/idea', 'moods/nervous', 'moods/questions',
+  'moods/rest', 'moods/silly', 'moods/wink', 'moods/winner', 'moods/yoga',
+  'characters/artist', 'characters/cinema', 'characters/gaming-girl', 'characters/girl-angry',
+  'characters/girl-at-laptop', 'characters/girl-celebrates', 'characters/girl-deadlines', 'characters/girl-driving',
+  'characters/girl-excited', 'characters/girl-hello', 'characters/girl-like', 'characters/girl-on-fire',
+  'characters/girl-pleased', 'characters/girl-reading-book', 'characters/girl-sleepy', 'characters/girl-tons-of-books',
+  'characters/girl-wins', 'characters/girl-with-books', 'characters/girl-with-headphones', 'characters/girl-with-paper',
+  'characters/girl-with-sunglasses', 'characters/girl-write', 'characters/hero', 'characters/photography',
+].map(s => `/stickers/${s}.png`)
+---
+
+<section class="py-16 px-5" id="doodle-wheel">
+  <div class="max-w-md mx-auto relative mb-4">
+    <h1 class="text-4xl font-medium text-center" data-i18n="wheel.heading">Also, I love to doodle</h1>
+    <img src={svgUnderline.src} alt="" width="140" class="absolute left-1/2 -translate-x-1/2 -bottom-1" />
+  </div>
+  <p class="text-center text-gray-600 mb-12" data-i18n="wheel.subheading">Spin to see funny stickers</p>
+
+  <div class="relative max-w-3xl mx-auto border-3 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,0.15)] p-6 md:p-10">
+    <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -right-1.5"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -top-1.5 -left-1.5"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -left-1.5"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -bottom-1.5 -right-1.5"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+      <!-- Wheel -->
+      <div class="flex flex-col items-center gap-6">
+        <button
+          id="spin-wheel"
+          type="button"
+          aria-label="Spin the wheel"
+          class="group relative block w-52 md:w-64 cursor-pointer select-none"
+          style="aspect-ratio: 1070 / 1102;"
+        >
+          {['line-1', 'line-2', 'line-3', 'line-4'].map(n => <img src={`/wheel/${n}.png`} alt="" class="wheel-line absolute" style={pos(n)} />)}
+          {['spark-1', 'spark-2', 'spark-3'].map(n => <img src={`/wheel/${n}.png`} alt="" class="wheel-spark absolute" style={pos(n)} />)}
+          <img src="/wheel/stand.png" alt="" class="absolute" style={pos('stand')} />
+          <img id="spin-wheel-disc" src="/wheel/wheel.png" alt="" class="absolute" style={pos('wheel')} />
+          <img id="spin-wheel-pointer" src="/wheel/pointer.png" alt="" class="absolute" style={`${pos('pointer')};transform-origin:50% 15%`} />
+        </button>
+        <button id="spin-wheel-btn" type="button" class="bg-[var(--blue)] text-black font-medium flex items-center gap-2 h-11 px-6 border-3 rounded-full transition-transform hover:-translate-y-0.5">
+          <i class="ri-refresh-line"></i><span data-i18n="wheel.button">Spin the wheel</span>
+        </button>
+      </div>
+
+      <!-- Result -->
+      <div class="flex justify-center">
+        <div id="sticker-card" class="relative w-56 h-64 md:w-64 md:h-72 flex items-center justify-center border-2 border-dashed border-gray-400 bg-[var(--main-bg)]">
+          <span id="sticker-empty" class="text-7xl font-black text-gray-300 select-none">?</span>
+          <img id="sticker-prize" src="" alt="" class="hidden absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] object-contain drop-shadow-[3px_3px_0_rgba(0,0,0,0.25)]" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #spin-wheel img { pointer-events: none; }
+  #spin-wheel-disc { transition: rotate 0.4s ease; }
+  #spin-wheel:not(.spinning):hover #spin-wheel-disc { rotate: 18deg; }
+  .wheel-line { opacity: 0; transition: opacity 0.3s; }
+  #spin-wheel.spinning .wheel-line { opacity: 1; animation: wheel-flicker 0.18s steps(2) infinite; }
+  #spin-wheel.spinning .wheel-spark { animation: wheel-pulse 0.4s ease-in-out infinite alternate; }
+  #spin-wheel.spinning #spin-wheel-pointer { animation: wheel-tick 0.12s ease-in-out infinite alternate; }
+  @keyframes wheel-flicker { 50% { opacity: 0.35; } }
+  @keyframes wheel-pulse { to { transform: scale(1.25); } }
+  @keyframes wheel-tick { from { transform: rotate(-12deg); } to { transform: rotate(10deg); } }
+</style>
+
+<script is:inline define:vars={{ stickers }}>
+  (function () {
+    const wheel = document.getElementById('spin-wheel');
+    const btn = document.getElementById('spin-wheel-btn');
+    const disc = document.getElementById('spin-wheel-disc');
+    const prize = document.getElementById('sticker-prize');
+    const empty = document.getElementById('sticker-empty');
+    const card = document.getElementById('sticker-card');
+    if (!wheel || !disc || !prize) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let angle = 0, last = '';
+
+    function showSticker(src) {
+      prize.src = src;
+      prize.classList.remove('hidden');
+      empty.classList.add('hidden');
+      card.classList.remove('border-dashed', 'border-gray-400');
+      card.classList.add('border-black');
+      prize.animate(
+        [{ transform: 'scale(0) rotate(-20deg)' }, { transform: 'scale(1.12) rotate(6deg)', offset: 0.7 }, { transform: 'scale(1) rotate(0)' }],
+        { duration: reduce ? 1 : 550, easing: 'cubic-bezier(.3,1.4,.5,1)' }
+      );
+    }
+
+    function spin() {
+      if (wheel.classList.contains('spinning')) return;
+      let src;
+      do { src = stickers[Math.floor(Math.random() * stickers.length)]; } while (src === last && stickers.length > 1);
+      last = src;
+      new Image().src = src;   // preload while spinning
+
+      const duration = reduce ? 600 : 2400;
+      angle += reduce ? 360 : 1080 + Math.random() * 360;
+      wheel.classList.add('spinning');
+      prize.classList.add('hidden');
+      disc.style.transition = `transform ${duration}ms cubic-bezier(.15,.7,.2,1), rotate 0.3s ease`;
+      disc.style.transform = `rotate(${angle}deg)`;
+      setTimeout(() => { wheel.classList.remove('spinning'); showSticker(src); }, duration);
+    }
+
+    wheel.addEventListener('click', spin);
+    btn?.addEventListener('click', spin);
+  })();
+</script>

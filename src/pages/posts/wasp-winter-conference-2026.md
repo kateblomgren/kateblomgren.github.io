@@ -3,7 +3,8 @@ layout: ../../components/MarkdownPost.astro
 title: "WASP Winter Conference in Örebro"
 image:
   url: "/news-pics/wasp-poster.png"
-  alt: "WASP Winter Conference in Örebro"
+  alt: "Kate standing next to her poster “Crediting as a Socio-Technical Practice”."
+  caption: "With my poster in Örebro"
 tags: ["conference", "AI", "research"]
 pubDate: 'January 14, 2026'
 ---

@@ -6,7 +6,7 @@ authors:
   - name: "Kate Blomgren"
     url: "https://kateblomgren.github.io"
 venue: "Master's Dissertation, Uppsala University, 2023"
-image: "/stickers/peace-hand.png"
+image: "/stickers/places-things/peace-hand.png"
 pubDate: "2023-06-01"
 pdf: "https://www.diva-portal.org/smash/get/diva2:1767597/FULLTEXT01.pdf"
 doi: "https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-504582"

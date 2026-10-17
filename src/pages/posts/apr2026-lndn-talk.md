@@ -5,7 +5,8 @@ author:
 
 image:
   url: "/news-pics/gicentre-seminar-london.png"
-  alt: "Seminar announcement or presentation image for a talk by Kate Blomgren at the giCentre, City St George's, University of London."
+  alt: "Red-brick university building with a clock tower and autumn trees at City St George's, University of London."
+  caption: "City St George's, University of London"
 tags: ["talk", "giCentre", "science museums", "visualization", "HCI"]
 pubDate: 'April 27, 2026'
 ---

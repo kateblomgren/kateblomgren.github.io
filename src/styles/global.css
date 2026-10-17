@@ -6,3 +6,87 @@
 @import "tailwindcss";
 
 
+/* ── Paper sheet behind text ─────────────────────────────────────────
+   Pale tint of the section colour (set on <html> by Layout.astro),
+   black border like the rest of the site, dog-eared top-right corner. */
+.paper {
+  --paper-bg: color-mix(in srgb, var(--section, #FEA7CC) 13%, #fffefa);
+  --paper-fold: color-mix(in srgb, var(--section, #FEA7CC) 38%, #ffffff);
+  position: relative;
+  background: var(--paper-bg);
+  border: 2px solid #000;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.paper::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(225deg,
+    var(--main-bg) 0 calc(50% - 1px),
+    #000 calc(50% - 1px) calc(50% + 1px),
+    var(--paper-fold) calc(50% + 1px) 100%);
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-bottom-left-radius: 4px;
+  pointer-events: none;
+}
+
+/* ── Folder (projects) ───────────────────────────────────────────────
+   <div class="folder" style="--folder: #hex">
+     <div class="folder-tab">…</div>
+     <div class="folder-body">…</div>
+   </div> */
+.folder {
+  --folder-bg: color-mix(in srgb, var(--folder, #AEF5D4) 28%, #fffdf6);
+  --tab-h: 2.25rem;
+  position: relative;
+  padding-top: var(--tab-h);
+}
+/* a sheet of paper peeking out of the folder */
+.folder::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--tab-h) - 14px);
+  right: 12%;
+  width: 38%;
+  height: 40px;
+  background: #fff;
+  border: 2px solid #000;
+  transform: rotate(-2deg);
+  z-index: 0;
+}
+.folder-tab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: calc(var(--tab-h) + 2px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem 2px;
+  background: var(--folder-bg);
+  border: 2px solid #000;
+  border-bottom: none;
+  border-radius: 10px 14px 0 0;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.folder-body {
+  position: relative;
+  z-index: 1;
+  background: var(--folder-bg);
+  border: 2px solid #000;
+  border-radius: 0 12px 12px 12px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media print {
+  .paper, .folder-body, .folder-tab { background: none; box-shadow: none; }
+  .paper::after, .folder::before { display: none; }
+}

@@ -3,9 +3,9 @@ import { author } from '../sample'
 
 const socials = [
   { icon: 'ri-mail-fill', link: 'mailto:kate.blomgren@liu.se' },
-  { icon: 'ri-linkedin-box-fill', link: 'https://www.linkedin.com/feed/' },
+  { icon: 'ri-linkedin-box-fill', link: 'https://www.linkedin.com/in/kate-blomgren-b13801403/' },
   { icon: 'ri-bluesky-fill', link: 'https://bsky.app/profile/kateblom.bsky.social' },
-  { icon: 'ri-graduation-cap-fill', link: 'https://scholar.google.com/citations?hl=en&user=dQbMpv8AAAAJ&view_op=list_works&gmla=AEk_c1tFv1NV_fIyQiNrIa1xWjGq0-5bbt0VvULp4FJ9AjOZeJSJ9xooT6HuvNlfk3qPuXNqHCDUQLvIBBM3-qRxhwv5zH31IfPDwyBCvhsmIPMkjdhexjguWHh771P1Ank_1e6tIbL4JmTSDSODUqU&iaan=Caterina+Blomgren' },
+  { icon: 'ri-graduation-cap-fill', link: 'https://scholar.google.com/citations?user=dQbMpv8AAAAJ&hl=en' },
 ]
 
 ---
@@ -18,7 +18,7 @@ const socials = [
         </a>
       </div>
       <div class="text-center">
-        <p>© {new Date().getFullYear()} {author.nickname}. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {author.nickname}. <span data-i18n="footer.rights">All rights reserved.</span></p>
       </div>
       <div class="flex md:justify-end gap-5">
         {socials.map(item => ( 

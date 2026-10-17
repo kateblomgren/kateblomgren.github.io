@@ -7,11 +7,12 @@ import Tools from '../components/Tools.astro'
 import Footer from '../components/Footer.astro'
 
 const researchInterests = [
-  "Feminist epistemologies and their application to design research and human-centered systems",
-  "Critical data visualization as a method for surfacing issues of authorship, credit, and recognition in collaborative environments such as science museums",
-  "Ethics of visibility and labor, especially around how contributions are acknowledged or overlooked in public-facing technologies and institutions",
-  "Participatory and playful design methods, with a focus on inclusive practices and creative engagement with complex ethical topics",
+  "Sociotechnical HCI: the values, practices and people behind technology",
+  "Critical data visualization, especially around authorship, credit and recognition in collaborative settings such as science museums",
+  "Visibility and labour: how contributions are acknowledged or overlooked in public-facing technologies and institutions",
+  "Participatory and playful design methods, including games as a way to engage with complex topics such as AI",
   "Procedural critique and representation in games, including how simulation and interaction encode values and social assumptions",
+  "AI and large language models, including their use in qualitative research",
 ]
 
 const education = [
@@ -19,7 +20,7 @@ const education = [
     title: "PhD in Media and Technology",
     university: "Linköping University",
     place: "August 2024 – present · Norrköping, Sweden",
-    description: "PhD research explores critical data visualization through the lens of feminist epistemologies, examining how knowledge, labor, and recognition are represented and negotiated in collaborative public-facing projects. The work is situated at the intersection of design research, social justice, and responsible computing."
+    description: "PhD research in HCI and data visualization, focusing on science museums: how contributions are credited and made visible, and how visualization and interactive media communicate science to the public. Informed by feminist theory."
   },
   {
     title: "MA in Game Design",
@@ -63,21 +64,21 @@ const skills = [
 
 const projects = [
   {
-    title: "Visualisation Center Credit Project",
+    title: "Crediting Practices in Science Museums",
     role: "Lead PhD Researcher",
     year: "January 2024 – present · Norrköping, Sweden",
-    description: "Developing interactive data visualizations and participatory tools to represent contributions and credit in exhibition production. The project investigates how labor and authorship are distributed and recognized in interdisciplinary teams, with a focus on transparency, collaboration, and visitor engagement."
+    description: "Interview study with people working in science museums on who gets credited for interactive exhibits, which work becomes visible or invisible, and how those decisions are made. Resulted in a paper at IEEE VIS 2026."
   },
   {
     title: "GECO – Gamify Energy Communities",
     role: "Researcher",
-    year: "October 2023 – present · Gotland, Sweden",
+    year: "October 2023 – May 2024 · Gotland, Sweden",
     description: "Developing gamified facilitation tools to support inclusive and sustainable group dynamics in rural energy communities through design-driven research."
   },
   {
     title: "Erasmus+ ROCKET & EDGE Projects",
     role: "Graphic Designer",
-    year: "February 2023 – present · Sweden / Germany / The Netherlands",
+    year: "February 2023 – June 2024 · Sweden / Germany / The Netherlands",
     description: "Designing visual materials and user interfaces for international education projects focused on role-playing games, inclusion, and interdisciplinary collaboration in higher education."
   },
 ]
@@ -101,23 +102,47 @@ const languages = [
     <!-- Bio -->
     <section class="max-w-3xl mx-auto py-16 px-6">
       <div class="flex flex-col md:flex-row gap-10 items-start">
-        <div class="flex-1">
+        <div class="flex-1 paper p-6 md:p-8">
           <h1 class="text-4xl font-medium mb-6" data-i18n="about.heading">About Me</h1>
           <p class="text-lg leading-relaxed" data-i18n-html="about.bio_1_html">
-            I'm a PhD researcher in Data Visualisation at <a href="https://liu.se/en/research/visualization-and-interaction-design" class="font-bold underline" target="_blank">Linköping University</a>, working at the intersection of interactive data visualization, feminist theory, and game studies. Originally from <span class="underline cursor-pointer" onclick="addSticker('/stickers/uk-tri.png', this)">Ukraine</span>, I'm now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/norr-uni.png', this)">Norrköping, Sweden</span>.
+            I'm a PhD researcher in Data Visualisation at <a href="https://visidlab.github.io/" class="font-bold underline" target="_blank">Linköping University</a>, working in HCI and data visualization. Originally from <span class="underline cursor-pointer" onclick="addSticker('/stickers/places-things/uk-tri.png', this)">Ukraine</span>, I'm now based in <span class="underline cursor-pointer" onclick="addSticker('/stickers/places-things/norrkoping-campus.png', this)">Norrköping, Sweden</span>.
           </p>
           <p class="text-lg leading-relaxed mt-4" data-i18n="about.bio_2">
-            At the heart of my work is a curiosity about epistemology — about how knowledge is made, and who gets to make it. I like to challenge the idea that science and data can simply speak for themselves as neutral, objective truths. Every outcome of science reflects choices about what to show, how to show it, and whose perspective gets centered. Design, in this sense, is always a statement — and I'm interested in making that statement conscious.
-          </p>
-          <p class="text-lg leading-relaxed mt-4" data-i18n="about.bio_3">
-            Much of my current work unfolds in and around science museums, where complex, contested ideas meet wider publics. I'm curious about the choices embedded in those encounters — and what it might mean to make them differently.
+            I'm interested in the sociotechnical side of technology: not only how it works, but the values, practices, people and structures around it. Informed by feminist theory, I ask whose work gets recognised and how things that seem neutral or technical are shaped by particular people and decisions. My research includes credit and contribution in science museums, visualization and interactive media for communicating science to the public, and the role of AI and large language models in how we explain, analyse and understand things. The common thread is what technological systems make visible, and what they hide.
           </p>
           <p class="text-lg leading-relaxed mt-4" data-i18n-html="about.bio_4_html">
-            Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/orange-cat-standing.png', this)">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/dog-in-box.png', this)">dog</span>. I love video games, crocheting, Lego, and board games.
+            Outside of research, I spend my time with my wife, <span class="underline cursor-pointer" onclick="addSticker('/stickers/pets/orange-cat-standing.png', this)">our two cats</span>, and our <span class="underline cursor-pointer" onclick="addSticker('/stickers/pets/dog-in-box.png', this)">dog</span>. I love video games, crocheting, Lego, and board games.
           </p>
         </div>
         <div class="w-full md:w-[240px] flex-shrink-0 space-y-6">
-          <img src="/stickers/just-like-other-girls.png" alt="Just like other girls illustration" class="w-full" />
+          <!-- Photo: hover to draw cat doodles on it (coordinates match kate-b.jpg, 1254×1254) -->
+          <div class="doodle-photo relative border-2 border-black" tabindex="0">
+            <img src="/kate-b.jpg" alt="Kate Blomgren portrait" class="block w-full aspect-square object-cover" />
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1254 1254" aria-hidden="true">
+              <defs><filter id="blush-blur"><feGaussianBlur stdDeviation="10" /></filter></defs>
+              <g class="doodle d-ears" stroke="#1d1d1d" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M330 232 Q322 128 362 40 Q430 108 494 182 Q410 196 330 232 Z" fill="#2b2b2b" />
+                <path d="M362 192 Q360 130 378 92 Q412 128 442 170 Q400 176 362 192 Z" fill="#FEA7CC" stroke="none" />
+                <path d="M884 248 Q892 142 852 54 Q784 122 720 196 Q804 210 884 248 Z" fill="#2b2b2b" />
+                <path d="M852 206 Q854 144 836 106 Q802 142 772 184 Q814 190 852 206 Z" fill="#FEA7CC" stroke="none" />
+              </g>
+              <g class="doodle d-blush">
+                <ellipse cx="452" cy="660" rx="66" ry="32" fill="#FF7FA8" opacity="0.5" filter="url(#blush-blur)" />
+                <ellipse cx="748" cy="660" rx="66" ry="32" fill="#FF7FA8" opacity="0.5" filter="url(#blush-blur)" />
+                <g stroke="#fff" stroke-width="7" stroke-linecap="round" opacity="0.9">
+                  <path d="M428 676 L442 648 M450 676 L464 648 M472 676 L486 648" />
+                  <path d="M724 676 L738 648 M746 676 L760 648 M768 676 L782 648" />
+                </g>
+              </g>
+              <g class="doodle d-whiskers" fill="none" stroke="#1d1d1d" stroke-width="8" stroke-linecap="round">
+                <path d="M396 632 Q320 612 236 606" /><path d="M392 664 Q314 662 228 670" /><path d="M396 694 Q322 712 246 738" />
+                <path d="M808 632 Q884 612 968 606" /><path d="M812 664 Q890 662 976 670" /><path d="M808 694 Q882 712 958 738" />
+              </g>
+              <g class="doodle d-nose">
+                <path d="M580 600 Q602 590 624 600 Q614 620 602 627 Q590 620 580 600 Z" fill="#FEA7CC" stroke="#1d1d1d" stroke-width="7" stroke-linejoin="round" />
+              </g>
+            </svg>
+          </div>
 
           <!-- Supervisor card -->
           <a href="https://miriah.github.io/" target="_blank" class="block relative bg-[#CCA0FF] border-2 border-black px-4 py-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)] transition-transform hover:rotate-0 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.35)]" style="transform: rotate(-1.5deg);">
@@ -150,7 +175,8 @@ const languages = [
     <Tools />
 
     <!-- CV -->
-    <section class="max-w-3xl mx-auto py-16 px-6" id="cv-section">
+    <section class="max-w-3xl mx-auto py-16 px-4" id="cv-section">
+      <div class="paper px-6 md:px-10 py-10">
       <div class="flex items-center justify-between mb-10">
         <h2 class="text-3xl font-bold" data-i18n="about.cv_heading">CV</h2>
         <a href="/BlomgrenCV.pdf" download class="px-4 py-2 border-2 border-black bg-white font-medium text-sm transition-all duration-200 hover:shadow-[3px_3px_0px_rgba(0,0,0,0.3)]">
@@ -225,7 +251,7 @@ const languages = [
           {skills.map((item, i) => (
             <li class="flex gap-3">
               <span class="text-gray-400 mt-1">❖</span>
-              <span><span class="font-bold" data-i18n={`about.skills.${i}.label`}>{item.label}:</span> <span data-i18n={`about.skills.${i}.desc`}>{item.desc}</span></span>
+              <span><span class="font-bold"><span data-i18n={`about.skills.${i}.label`}>{item.label}</span>:</span> <span data-i18n={`about.skills.${i}.desc`}>{item.desc}</span></span>
             </li>
           ))}
         </ul>
@@ -244,11 +270,28 @@ const languages = [
         </ul>
       </div>
 
+      </div>
     </section>
 
     <Footer />
 
 <style>
+  /* Cat doodles drawn over the photo on hover / focus */
+  .doodle-photo .doodle {
+    opacity: 0;
+    transform: scale(0.6);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.2s ease, transform 0.35s cubic-bezier(.3,1.6,.5,1);
+  }
+  .doodle-photo:hover .doodle, .doodle-photo:focus .doodle { opacity: 1; transform: scale(1); }
+  .doodle-photo:hover .d-ears, .doodle-photo:focus .d-ears { transition-delay: 0s; animation: ear-wiggle 1.6s ease-in-out 0.4s infinite; }
+  .doodle-photo:hover .d-whiskers, .doodle-photo:focus .d-whiskers { transition-delay: 0.12s; }
+  .doodle-photo:hover .d-nose, .doodle-photo:focus .d-nose { transition-delay: 0.2s; }
+  .doodle-photo:hover .d-blush, .doodle-photo:focus .d-blush { transition-delay: 0.28s; }
+  @keyframes ear-wiggle { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1) rotate(-1.5deg); } }
+  @media (prefers-reduced-motion: reduce) { .doodle-photo .doodle { transition: opacity 0.2s; transform: none; animation: none !important; } }
+
   @media print {
     header, footer, #sticker-book, a[href="/guestbook/"] {
       display: none !important;
@@ -281,7 +324,7 @@ const languages = [
     const sticker = document.createElement('img');
     sticker.src = image;
     sticker.setAttribute('data-sticker', image);
-    sticker.className = 'absolute w-[110px] h-auto cursor-grab pointer-events-auto drop-shadow-md';
+    sticker.className = 'absolute w-[110px] h-auto cursor-grab pointer-events-auto drop-shadow-[3px_3px_0_rgba(0,0,0,0.25)]';
     sticker.style.willChange = 'transform';
     sticker.style.transform = `translate(${startX}px, ${startY}px) scale(0)`;
     sticker.style.transition = 'transform 0.2s ease';

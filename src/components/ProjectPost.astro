@@ -5,57 +5,298 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 
 const { frontmatter } = Astro.props;
+const accent = frontmatter.color ?? '#CCA0FF';
+const ongoing = /present/i.test(frontmatter.year ?? '');
+
+// --- Outputs linked by file name (without .md) in `outputs:` ---
+const allOutputs = Object.entries(import.meta.glob('../pages/outputs/*.md', { eager: true })) as [string, any][];
+const outputs = (frontmatter.outputs ?? [])
+  .map((slug: string) => allOutputs.find(([path]) => path.endsWith(`/${slug}.md`))?.[1])
+  .filter(Boolean)
+  .sort((a: any, b: any) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
+
+// Same accent colours as the output pages
+const typeColors: Record<string, string> = {
+  paper: '#CCA0FF', thesis: '#33BFFF', poster: '#FEA7CC', talk: '#FFDC58', workshop: '#AEF5D4', abstract: '#FF544F',
+};
+const tapeColors = ['#FEA7CC', '#AEF5D4', '#FFDC58', '#CCA0FF', '#33BFFF'];
+const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
 ---
 
 <Layout>
   <Header />
 
   <article class="pt-10 pb-32 px-4">
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-4xl mx-auto">
 
       <!-- Back -->
       <a href="/projects/" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-black transition-colors mb-8">
-        ← Back to Projects
+        <span data-i18n="project_post.back">← Back to Projects</span>
       </a>
 
-      <!-- Colour bar + title -->
-      <div class="border-2 border-black mb-10 overflow-hidden">
-        <!-- accent bar -->
-        <div class="h-3 w-full" style={`background: ${frontmatter.color}`}></div>
+      <!-- Folder: tab + body; a sheet of paper peeks out of the top -->
+      <div class="folder mt-6" style={`--folder: ${accent}`}>
+        <div class="folder-tab">
+          <i class="ri-folder-open-fill text-sm"></i>
+          <span data-i18n="project_post.label">Project</span>
+        </div>
+        <div class="folder-body p-6 md:p-10">
 
-        <div class="bg-white p-8">
-          <h1 class="text-3xl font-black leading-snug mb-2">{frontmatter.title}</h1>
-          <p class="text-gray-500 font-medium mb-6">{frontmatter.role}</p>
+          <!-- Title, stamp, sticker -->
+          <div class="relative border-b-2 border-dashed border-black/25 pb-8 mb-10 pr-24 md:pr-44">
+            <h1 class="text-3xl md:text-4xl font-black leading-tight">{frontmatter.title}</h1>
 
-          <!-- meta row -->
-          <div class="flex flex-wrap gap-6 text-sm text-gray-500 border-t border-gray-100 pt-4 mb-6">
-            <span><span class="font-bold text-black">Period</span> — {frontmatter.year}</span>
-            <span><span class="font-bold text-black">Location</span> — {frontmatter.location}</span>
+            <!-- Rubber stamp -->
+            <div
+              class="absolute right-0 bottom-6 border-3 rounded-sm px-2 py-1 font-black text-xs md:text-sm uppercase tracking-widest select-none opacity-80 bg-white/40"
+              style={`transform: rotate(-8deg); color: ${ongoing ? '#e0443f' : '#555'}; border-color: ${ongoing ? '#e0443f' : '#555'};`}
+            >
+              {ongoing
+                ? <span data-i18n="project_post.status_ongoing">Ongoing</span>
+                : <span data-i18n="project_post.status_done">Wrapped up</span>}
+            </div>
+
+            <!-- Sticker: hops when clicked -->
+            <img
+              id="project-sticker"
+              src={frontmatter.sticker ?? '/stickers/characters/girl-with-books.png'}
+              alt=""
+              class="absolute -top-16 md:-top-20 right-0 md:right-4 w-20 md:w-28 drop-shadow-[3px_3px_0_rgba(0,0,0,0.25)] cursor-pointer select-none transition-transform duration-200 hover:rotate-6"
+              title="hi!"
+            />
           </div>
 
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2">
-            {frontmatter.tags?.map((tag: string) => (
-              <span
-                class="text-xs px-3 py-1 border-2 border-black font-medium"
-                style={`background: ${frontmatter.color}`}
-              >
-                {tag}
-              </span>
-            ))}
+      <!-- Grid: phones read description → sidebar → outputs; desktop keeps the sidebar on the right -->
+      <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_15rem] gap-x-14 gap-y-12 items-start">
+
+        <!-- ── LEFT: main content ── -->
+        <div class="min-w-0 order-1 md:col-start-1">
+
+          {frontmatter.image && (
+            <div class="float-none md:float-left md:mr-8 mb-6 max-w-[260px] w-full relative group/pol">
+              <div class="border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,0.25)] transition-transform duration-200 group-hover/pol:rotate-0" style="transform: rotate(-1.5deg);">
+                <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-10 h-3 border opacity-80 z-10" style={`background: ${accent}; border-color: ${accent};`}></span>
+                <div class="p-2 pb-0">
+                  <div class="border-2 border-black overflow-hidden">
+                    <img
+                      id="polaroid-img"
+                      src={frontmatter.image}
+                      alt={frontmatter.imageCaption || frontmatter.title}
+                      class="block object-cover max-h-[250px] w-full cursor-zoom-in transition-all duration-300 group-hover/pol:brightness-110 group-hover/pol:scale-[1.03]"
+                    />
+                  </div>
+                </div>
+                <div class="px-3 py-4 min-h-[52px] flex items-center">
+                  {frontmatter.imageCaption
+                    ? <p class="text-xs text-gray-600 leading-snug italic">{frontmatter.imageCaption}</p>
+                    : <p class="text-xs text-gray-300 italic select-none">— no caption —</p>}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <p class="text-xs font-black uppercase tracking-widest text-gray-400 mb-3" data-i18n="project_post.about">About the project</p>
+          <div class="text-lg [&_p]:mb-5 [&_p]:leading-relaxed [&_h2]:font-black [&_h2]:text-2xl [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-black [&_a]:underline [&_strong]:font-black [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5">
+            <slot />
           </div>
+          <div class="clear-both"></div>
+        </div>
+
+        <!-- Outputs from this project -->
+        {outputs.length > 0 && (
+            <section class="min-w-0 order-3 md:col-start-1 md:row-start-2">
+              <div class="flex items-center gap-3 mb-8">
+                <h2 class="text-2xl font-black" data-i18n="project_post.outputs">Outputs from this project</h2>
+                <span class="text-xs font-black border-2 border-black rounded-full size-7 flex items-center justify-center" style={`background: ${accent}`}>{outputs.length}</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {outputs.map(({ frontmatter: o, url }: any, i: number) => {
+                  const c = typeColors[o.type] ?? '#CCA0FF';
+                  return (
+                    <a
+                      href={url}
+                      class="group block relative bg-white border-2 border-black p-2 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] transition-all duration-200 hover:!rotate-0 hover:-translate-y-1 hover:shadow-[5px_5px_0px_rgba(0,0,0,0.3)]"
+                      style={`transform: rotate(${rotations[i % rotations.length]});`}
+                    >
+                      <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-10 h-3 border opacity-80 z-10" style={`background: ${tapeColors[i % tapeColors.length]}; border-color: ${tapeColors[i % tapeColors.length]};`}></span>
+                      <div class="border-2 border-black h-36 overflow-hidden bg-[var(--main-bg)] flex items-center justify-center">
+                        {o.image
+                          ? <img src={o.image} alt="" class={`w-full h-full ${o.image.includes('/stickers/') ? 'object-contain p-3' : 'object-cover'} transition-transform duration-300 group-hover:scale-105`} />
+                          : <i class="ri-file-text-line text-4xl text-gray-300"></i>}
+                      </div>
+                      <div class="px-1 pt-3 pb-1">
+                        <div class="flex items-center justify-between gap-2 mb-1.5">
+                          <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border-2 border-black" style={`background: ${c}`} data-i18n={`outputs_page.filter_${o.type}`}>{o.type}</span>
+                          <span class="text-xs text-gray-400 font-medium">{new Date(o.pubDate).getFullYear()}</span>
+                        </div>
+                        <p class="text-sm font-bold leading-snug group-hover:underline">{o.title}</p>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </section>
+        )}
+
+        <!-- ── RIGHT: sticky sidebar ── -->
+        <aside class="w-full order-2 md:col-start-2 md:row-start-1 md:row-span-2 md:sticky md:top-32 space-y-5">
+
+          <!-- Links (optional) — same buttons as PDF / DOI on output pages -->
+          {frontmatter.links?.length > 0 && (
+            <div class="space-y-3">
+              {frontmatter.links.map((l: any) => (
+                <a
+                  href={l.url}
+                  target="_blank"
+                  class="flex items-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
+                >
+                  <i class={`${l.icon ?? 'ri-external-link-line'} text-lg flex-shrink-0`}></i>
+                  <span class="leading-snug">{l.label}</span>
+                </a>
+              ))}
+              <div class="border-t-2 border-dashed border-gray-300"></div>
+            </div>
+          )}
+
+          {frontmatter.year && (
+            <div class="border-2 border-black px-3 py-2 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:!rotate-0" style={`background: ${accent}; transform: rotate(1deg);`}>
+              <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#AEF5D4] border border-green-300 opacity-80"></span>
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-600 mb-0.5" data-i18n="project_post.period">Period</p>
+              <p class="text-sm font-black leading-snug">{frontmatter.year}</p>
+            </div>
+          )}
+
+          {frontmatter.location && (
+            <div class="bg-white border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:!rotate-0" style="transform: rotate(-0.6deg);">
+              <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FEA7CC] border border-pink-300 opacity-80"></span>
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1" data-i18n="project_post.location">Location</p>
+              <p class="text-sm font-medium leading-snug flex items-center gap-1"><i class="ri-map-pin-2-fill"></i>{frontmatter.location}</p>
+            </div>
+          )}
+
+          <!-- Collaborators (optional) -->
+          {frontmatter.collaborators?.length > 0 && (
+            <div class="space-y-3 pt-1">
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-400" data-i18n="project_post.collaborators">With</p>
+              {frontmatter.collaborators.map((p: any, i: number) => {
+                const tape = tapeColors[(i + 2) % tapeColors.length];
+                const initials = p.name.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase();
+                const Tag = p.url ? 'a' : 'div';
+                return (
+                  <Tag href={p.url || undefined} target={p.url ? '_blank' : undefined}
+                    class="flex items-center gap-2 relative bg-white border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] transition-transform hover:!rotate-0"
+                    style={`transform: rotate(${rotations[(i + 1) % rotations.length]});`}>
+                    <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 border opacity-80" style={`background: ${tape}; border-color: ${tape};`}></span>
+                    <span class="w-7 h-7 rounded-full border-2 border-black flex items-center justify-center text-[9px] font-black flex-shrink-0" style={`background: ${tape};`}>{initials}</span>
+                    <span class="text-xs font-bold leading-snug">{p.name}{p.url && <i class="ri-external-link-line text-[10px] text-gray-400 ml-1"></i>}</span>
+                  </Tag>
+                );
+              })}
+            </div>
+          )}
+
+          <!-- Tags: click to peel off / stick back -->
+          {frontmatter.tags?.length > 0 && (
+            <div class="pt-1">
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-2" data-i18n="project_post.tags">Topics</p>
+              <div class="flex flex-wrap gap-2">
+                {frontmatter.tags.map((tag: string, i: number) => (
+                  <button
+                    class="project-tag text-xs px-3 py-1 border-2 border-black font-medium shadow-[2px_2px_0px_rgba(0,0,0,0.25)] cursor-pointer"
+                    style={`background: ${tapeColors[i % tapeColors.length]}; transform: rotate(${i % 2 ? 2 : -2}deg); transition: transform 0.25s cubic-bezier(.3,1.6,.5,1);`}
+                    data-rot={i % 2 ? 2 : -2}
+                  >{tag}</button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Toggle note cards (same as output pages) -->
+          {frontmatter.notes?.length > 0 && (
+            <div class="space-y-2 pt-2">
+              <div class="border-t-2 border-dashed border-gray-300 mb-3"></div>
+              {frontmatter.notes.map((note: any, i: number) => {
+                const c = ['#CCA0FF', '#FEA7CC', '#AEF5D4', '#FFDC58', '#33BFFF'][i % 5];
+                const rot = i % 2 === 0 ? -1 : 1;
+                return (
+                  <div class="note-card border-2 border-black bg-white shadow-[2px_2px_0px_rgba(0,0,0,0.2)] relative overflow-hidden transition-transform duration-200 hover:!rotate-0" style={`transform: rotate(${rot}deg);`}>
+                    <button class="note-toggle w-full flex items-center gap-2 px-3 py-2 text-left font-bold text-xs cursor-pointer" style={`background: ${c};`}>
+                      {note.icon && <span class="text-sm leading-none">{note.icon}</span>}
+                      <span class="flex-1 leading-snug">{note.title}</span>
+                      <span class="note-arrow text-base leading-none ml-auto">+</span>
+                    </button>
+                    <div class="note-body" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0;">
+                      <p class="text-xs leading-relaxed text-gray-700 px-3 py-3">{note.text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+        </aside>
+      </div>
         </div>
       </div>
-
-      <!-- Body -->
-      <div class="prose prose-lg max-w-none
-        prose-headings:font-black
-        prose-a:underline">
-        <slot />
-      </div>
-
     </div>
   </article>
 
   <Footer />
 </Layout>
+
+<script is:inline>
+  // Sticker hop
+  const sticker = document.getElementById('project-sticker');
+  sticker?.addEventListener('click', () => {
+    sticker.animate(
+      [
+        { transform: 'translateY(0) rotate(0deg)' },
+        { transform: 'translateY(-26px) rotate(-12deg)' },
+        { transform: 'translateY(0) rotate(8deg)' },
+        { transform: 'translateY(-8px) rotate(-4deg)' },
+        { transform: 'translateY(0) rotate(0deg)' },
+      ],
+      { duration: 650, easing: 'ease-out' }
+    );
+  });
+
+  // Tags: peel off (lift + straighten) / stick back
+  document.querySelectorAll('.project-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const peeled = tag.dataset.peeled === '1';
+      tag.dataset.peeled = peeled ? '0' : '1';
+      tag.style.transform = peeled
+        ? `rotate(${tag.dataset.rot}deg)`
+        : `translateY(-4px) rotate(${-tag.dataset.rot * 3}deg) scale(1.08)`;
+      tag.style.boxShadow = peeled ? '' : '4px 6px 0px rgba(0,0,0,0.25)';
+    });
+  });
+
+  // Note card toggles
+  document.querySelectorAll('.note-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.closest('.note-card').querySelector('.note-body');
+      const arrow = btn.querySelector('.note-arrow');
+      const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+      body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
+      body.style.opacity = isOpen ? '0' : '1';
+      arrow.textContent = isOpen ? '+' : '−';
+    });
+  });
+
+  // Polaroid lightbox
+  const polaroidImg = document.getElementById('polaroid-img');
+  if (polaroidImg) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);cursor:zoom-out;align-items:center;justify-content:center;';
+    const fullImg = document.createElement('img');
+    fullImg.src = polaroidImg.src;
+    fullImg.style.cssText = 'max-width:90vw;max-height:90vh;object-fit:contain;border:3px solid white;';
+    overlay.appendChild(fullImg);
+    document.body.appendChild(overlay);
+    const close = () => { overlay.style.display = 'none'; document.body.style.overflow = ''; };
+    polaroidImg.addEventListener('click', () => { overlay.style.display = 'flex'; document.body.style.overflow = 'hidden'; });
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  }
+</script>

@@ -3,7 +3,8 @@ layout: ../../components/MarkdownPost.astro
 title: "Jury Member at Gotland Game Conference"
 image:
   url: "/news-pics/ggc2025/511198758_1290720416393717_4781812209233128118_n.jpg"
-  alt: "Gotland Game Conference 2025"
+  alt: "Paper stand-up figures of game characters and piles of stickers on a velvet-covered table, with someone playing a game in the background."
+  caption: "Gotland Game Conference 2025"
 tags: ["conference", "games", "jury"]
 pubDate: 'June 10, 2025'
 ---

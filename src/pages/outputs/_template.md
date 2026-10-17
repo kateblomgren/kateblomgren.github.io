@@ -15,7 +15,13 @@ pubDate: "YYYY-MM-DD"  # full date controls sort order; only year is displayed
 # OPTIONAL fields — remove lines you don't need:
 pdf: "https://link-to-pdf.com"
 doi: "https://doi.org/..."
+link: "https://..."   # page about this output on the lab website → "View on lab website" button
 keywords: "keyword1, keyword2, keyword3"
+# RELATED: links shown on a "Related" note in the sidebar (icon is optional, any Remix Icon class)
+related:
+  - label: "Link text"
+    url: "https://example.com"
+    icon: "ri-external-link-line"
 # SIDEBAR NOTE CARDS — each appears as a small toggle card in the sidebar
 # icon is optional (any emoji), title is required, text revealed on click
 notes:

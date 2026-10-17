@@ -3,6 +3,7 @@ import '../styles/global.css'
 import Layout from "../layouts/Layout.astro";
 import AppHeader from '../components/Header.astro';
 import AppFooter from '../components/Footer.astro';
+import { excerpt } from '../excerpt';
 
 const allOutputs = (Object.values(import.meta.glob('./outputs/*.md', { eager: true })) as any[])
   .filter((p: any) => !p.file?.split('/').pop()?.startsWith('_'))
@@ -60,7 +61,7 @@ const filterI18nKeys: Record<string, string> = {
                     <span class="text-xs font-bold uppercase tracking-wider text-gray-400">{type}</span>
                     <h2 class="text-lg font-bold line-clamp-2">{frontmatter.title}</h2>
                     <p class="text-sm text-gray-500">{authorsDisplay} · {frontmatter.venue} · {frontmatter.pubDate ? new Date(frontmatter.pubDate).getFullYear() : ''}</p>
-                    <p class="text-sm text-gray-400 line-clamp-2" set:html={rawContent}></p>
+                    <p class="text-sm text-gray-400 line-clamp-2">{excerpt(rawContent())}</p>
                   </div>
                 </a>
               );

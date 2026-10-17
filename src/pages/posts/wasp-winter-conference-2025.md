@@ -2,8 +2,8 @@
 layout: ../../components/MarkdownPost.astro
 title: "WASP Winter Conference in Norrköping"
 image:
-  url: "/stickers/girl-with-paper.png"
-  alt: "WASP Winter Conference in Norrköping"
+  url: "/stickers/characters/girl-with-paper.png"
+  alt: "Illustrated sticker of Kate reading a sheet of paper."
 tags: ["conference", "AI", "research"]
 pubDate: 'January 15, 2025'
 ---

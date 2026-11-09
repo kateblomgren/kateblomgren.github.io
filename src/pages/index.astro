@@ -122,6 +122,8 @@ import SpinWheel from '../components/SpinWheel.astro'
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('sticker-book');
     if (!container) return;
+    // Skip on mobile — it overlaps the hero text on narrow screens
+    if (window.matchMedia('(max-width: 767px)').matches) return;
 
     const sticker = document.createElement('img');
     sticker.src = '/stickers/characters/girl-with-headphones.png';

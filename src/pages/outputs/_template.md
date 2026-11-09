@@ -13,8 +13,15 @@ image: "/your-cover-image.png"
 imageCaption: "Short annotation or description shown in the polaroid caption area."  # optional
 pubDate: "YYYY-MM-DD"  # full date controls sort order; only year is displayed
 # OPTIONAL fields — remove lines you don't need:
+award:                # badge above the PDF button; text shows on hover
+  label: "Honorable Mention"
+  text: "Short explanation of the award."
+  url: "https://..."  # optional
+  sticker: "/stickers/characters/girl-wins.png"  # optional
 pdf: "https://link-to-pdf.com"
+pdfLabel: "Download preprint"   # optional — button text, defaults to "Download PDF"
 doi: "https://doi.org/..."
+hideCite: true        # hides the "Cite (BibTeX)" block, e.g. before a DOI exists
 link: "https://..."   # page about this output on the lab website → "View on lab website" button
 keywords: "keyword1, keyword2, keyword3"
 # RELATED: links shown on a "Related" note in the sidebar (icon is optional, any Remix Icon class)

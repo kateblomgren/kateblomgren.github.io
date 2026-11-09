@@ -10,17 +10,23 @@ authors:
   - name: "Miriah Meyer"
     url: "https://miriah.github.io/"
 venue: "IEEE VIS 2026, Boston"
-link: "https://visidlab.github.io/publications/2026_vis_credit/"
+award:
+  label: "Honorable Mention"
+  text: "Papers with an honorable mention award are in the top 5% of papers submitted to IEEE VIS in a given year."
+  url: "https://ieeevis.org/year/2026/governance/best-paper-process/"
+  sticker: "/stickers/characters/girl-wins.png"
+hideCite: true  # no DOI yet — remove once the paper is officially published
+pdf: "/outputs/blomgren2026-giving-credit-preprint.pdf"
+pdfLabel: "Download preprint"
 related:
   - label: "Zine: Who made this exhibit?"
     url: "https://danielamoyano.github.io/crediting_zine/"
     icon: "ri-book-open-line"
+  - label: "Project page (VIS ID Lab)"
+    url: "https://visidlab.github.io/publications/2026_vis_credit/"
+    icon: "ri-external-link-line"
 image: "/stickers/pets/cat-in-bag.png"
 pubDate: "2026-09-30"
-notes:
-
-  - title: "Coming soon"
-    text: "Accepted at IEEE VIS 2026 (Boston, 9–13 November 2026)."
 ---
 
 Science museums are a rich environment for visualization research where researchers have designed new visualizations, interaction modalities, and educational approaches. But they are also socio-technical places where power, context, and organizational structures influence how science communication is produced and perceived. In this paper, we draw on our collaboration with a local science museum, where we worked on creating a new interactive digital exhibit. Through this process, we encountered a socio-technical phenomenon: these exhibits rarely acknowledge the work or people behind them. We explored the reasons for this invisibility through an interview study with science museum staff and leadership. Our results reveal crediting of interactive exhibits to be a complex, situated challenge. This challenge, however, offers visualization research more than a practical problem to solve — it is an opportunity to reframe credit as a socio-technical design space, one where visualization can make visible not only the outcomes of science, but the processes and people that produce it.

@@ -119,8 +119,8 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
           </div>
           <div class="clear-both"></div>
 
-          <!-- BibTeX block (hidden for talks) -->
-          {frontmatter.type !== 'talk' && <div class="mt-12 border-2 border-black">
+          <!-- BibTeX block (hidden for talks, or with hideCite: true) -->
+          {frontmatter.type !== 'talk' && !frontmatter.hideCite && <div class="mt-12 border-2 border-black">
             <button
               id="bibtex-toggle"
               class="w-full flex items-center justify-between px-4 py-3 font-bold text-sm hover:bg-gray-50 transition-colors"
@@ -146,6 +146,44 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
         <!-- ── RIGHT: sticky sidebar ── -->
         <div class="w-full md:w-56 flex-shrink-0 md:sticky md:top-32 space-y-4">
 
+          <!-- Award badge (optional) — hover/tap reveals details -->
+          {frontmatter.award && (
+            <div class="relative group/award pt-6" tabindex="0">
+              {frontmatter.award.sticker && (
+                <img
+                  src={frontmatter.award.sticker}
+                  alt=""
+                  class="absolute -top-1 -right-2 w-16 z-10 pointer-events-none select-none drop-shadow-[2px_2px_0px_rgba(0,0,0,0.15)]
+                         transition-transform duration-300 group-hover/award:-rotate-6 group-hover/award:scale-110"
+                />
+              )}
+              <div
+                class="relative bg-[#FFDC58] border-2 border-black px-3 py-2.5 pr-14 shadow-[3px_3px_0px_rgba(0,0,0,1)] cursor-help transition-transform group-hover/award:rotate-0"
+                style="transform: rotate(-1.5deg);"
+              >
+                <span class="absolute -top-2 left-6 w-8 h-3 bg-[#FEA7CC] border border-pink-300 opacity-80"></span>
+                <p class="text-[10px] font-black uppercase tracking-wider text-gray-700 flex items-center gap-1">
+                  <i class="ri-award-line text-sm leading-none"></i> Award
+                </p>
+                <p class="text-sm font-black leading-snug">{frontmatter.award.label}</p>
+              </div>
+              <!-- details: shown on hover, or on tap/focus for touch screens -->
+              <div
+                class="absolute left-0 right-0 top-full mt-2 z-20 bg-white border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.25)]
+                       opacity-0 invisible translate-y-1 transition-all duration-200
+                       group-hover/award:opacity-100 group-hover/award:visible group-hover/award:translate-y-0
+                       group-focus-within/award:opacity-100 group-focus-within/award:visible group-focus-within/award:translate-y-0"
+              >
+                <p class="text-xs leading-relaxed text-gray-700">{frontmatter.award.text}</p>
+                {frontmatter.award.url && (
+                  <a href={frontmatter.award.url} target="_blank" class="inline-flex items-center gap-1 mt-2 text-xs font-bold underline">
+                    How awards are chosen <i class="ri-external-link-line text-[10px]"></i>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
           <!-- PDF / DOI buttons — top of sidebar -->
           {frontmatter.pdf && (
             <a
@@ -153,7 +191,7 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
               download
               class="flex items-center justify-center gap-2 w-full px-3 py-2.5 border-2 border-black font-bold text-sm bg-white hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-shadow"
             >
-              <i class="ri-download-line text-lg"></i> Download PDF
+              <i class="ri-download-line text-lg"></i> {frontmatter.pdfLabel ?? 'Download PDF'}
             </a>
           )}
 
@@ -180,15 +218,6 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
           {(frontmatter.pdf || frontmatter.doi || frontmatter.link) && (
             <div class="border-t-2 border-dashed border-gray-300"></div>
           )}
-
-          <!-- Type sticker -->
-          <div
-            class="inline-block border-2 border-black px-4 py-2 font-black text-sm uppercase tracking-widest shadow-[3px_3px_0px_rgba(0,0,0,0.3)] select-none relative transition-transform hover:rotate-0"
-            style={`background: ${accent}; transform: rotate(-1.5deg);`}
-          >
-            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FFDC58] border border-yellow-400 opacity-80"></span>
-            {frontmatter.type}
-          </div>
 
           <!-- Author cards — one per author -->
           <div class="space-y-3 pt-1">
@@ -232,6 +261,28 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
             })}
           </div>
 
+          <!-- Year -->
+          {frontmatter.pubDate && (
+            <div
+              class="border-2 border-black px-3 py-2 bg-[#FFDC58] shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:rotate-0"
+              style="transform: rotate(0.8deg);"
+            >
+              <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#CCA0FF] border border-purple-300 opacity-80"></span>
+              <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-0.5">Year</p>
+              <p class="text-xl font-black">{new Date(frontmatter.pubDate).getFullYear()}</p>
+            </div>
+          )}
+
+          <!-- Venue -->
+          <div
+            class="bg-white border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:rotate-0"
+            style="transform: rotate(-1deg);"
+          >
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#AEF5D4] border border-green-300 opacity-80"></span>
+            <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1">Venue</p>
+            <p class="text-xs font-medium leading-snug">{frontmatter.venue}</p>
+          </div>
+
           <!-- Related (optional) -->
           {frontmatter.related?.length > 0 && (
             <div
@@ -251,27 +302,14 @@ const rotations  = ['-1.5deg', '1deg', '-0.8deg', '1.5deg', '-1.2deg'];
             </div>
           )}
 
-          <!-- Venue -->
+          <!-- Type sticker -->
           <div
-            class="bg-white border-2 border-black p-3 shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:rotate-0"
-            style="transform: rotate(-1deg);"
+            class="inline-block border-2 border-black px-4 py-2 font-black text-sm uppercase tracking-widest shadow-[3px_3px_0px_rgba(0,0,0,0.3)] select-none relative transition-transform hover:rotate-0"
+            style={`background: ${accent}; transform: rotate(-1.5deg);`}
           >
-            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#AEF5D4] border border-green-300 opacity-80"></span>
-            <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1">Venue</p>
-            <p class="text-xs font-medium leading-snug">{frontmatter.venue}</p>
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#FFDC58] border border-yellow-400 opacity-80"></span>
+            {frontmatter.type}
           </div>
-
-          <!-- Year -->
-          {frontmatter.pubDate && (
-            <div
-              class="border-2 border-black px-3 py-2 bg-[#FFDC58] shadow-[3px_3px_0px_rgba(0,0,0,0.2)] relative transition-transform hover:rotate-0"
-              style="transform: rotate(0.8deg);"
-            >
-              <span class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-[#CCA0FF] border border-purple-300 opacity-80"></span>
-              <p class="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-0.5">Year</p>
-              <p class="text-xl font-black">{new Date(frontmatter.pubDate).getFullYear()}</p>
-            </div>
-          )}
 
           <!-- Keywords -->
           {frontmatter.keywords && (
